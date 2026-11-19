@@ -35,7 +35,7 @@ export default async function Page({ params }: { params: Promise<{ path?: string
 
   const current = p.type === "main" || p.type === "sub" ? p.track : p.url;
   return (
-    <>
+    <div className={p.type === "intro" ? "intro-page" : undefined}>
       <Header current={current} />
       <main>
         <JsonLd data={ld} />
@@ -47,6 +47,6 @@ export default async function Page({ params }: { params: Promise<{ path?: string
         {p.type === "health" && <Health />}
       </main>
       <Footer />
-    </>
+    </div>
   );
 }

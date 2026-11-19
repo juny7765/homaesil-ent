@@ -97,36 +97,25 @@ const INTRO_META: Record<TrackKey, [string, string]> = {
 };
 export function Intro() {
   return (
-    <>
-      <section className="intro-hero"><div className="wrap" style={{ padding: "64px 32px 40px", display: "flex", flexDirection: "column", gap: 16 }}>
-        <Eyebrow>수원 권선구 호매실</Eyebrow>
-        <h1 className="h1">어떤 진료로 오셨나요?</h1>
-        <p className="lead" style={{ maxWidth: 720 }}>이비인후과 전문의 2인과 소아청소년과 전문의가 귀·코·목 진료와 수면·어지럼증·성장 전문 클리닉을 한곳에서 진료합니다.</p>
-        <div className="actions"><Btn href="/visit/">진료·방문안내</Btn><Btn href="/about/" kind="s">병원소개</Btn></div>
-      </div></section>
-      <div className="wrap" style={{ paddingBottom: 56 }}>
-        <div className="tiles">
-          {ORDER.map((k, i) => (
-            <Link className="tile" key={k} href={TRACKS[k].url}>
-              <div className="t">
-                <div className="n"><b>0{i + 1}</b><span>{TRACKS[k].url}</span></div>
-                <h2>{TRACKS[k].name}</h2>
-                <div className="d">{INTRO_META[k][0]}</div><div className="w">{INTRO_META[k][1]}</div>
-                <div className="go">{TRACKS[k].short} 전용 메인 →</div>
-              </div>
-              <div className="p"><img src={`/img/intro_${k}.jpg`} alt={`${TRACKS[k].name} 진료 장면`} width={960} height={1440} loading={i < 2 ? "eager" : "lazy"} /></div>
-            </Link>
-          ))}
-        </div>
+    <section className="intro2">
+      <div className="greet">
+        <h1>안녕하세요 호매실연세이비인후과 입니다.</h1>
       </div>
-      <div className="wrap" style={{ paddingBottom: 72 }}>
-        <div className="common">
-          <div><b>병원 공통 정보</b><p>{CLINIC.address}<br />대표번호 {CLINIC.tel} · {CLINIC.email}</p></div>
-          <div><b>진료시간</b><p>{CLINIC.hours.join(" · ")}</p></div>
-          <div><b>바로가기</b><p><Link href="/about/">병원소개</Link> · <Link href="/visit/">진료 및 방문안내</Link> · <Link href="/health/">건강정보</Link></p></div>
-        </div>
+      <div className="grid4">
+        {ORDER.map((k, i) => (
+          <Link className="tile2" key={k} href={TRACKS[k].url}>
+            <img src={`/img/hero_${k}.jpg`} alt={`${TRACKS[k].name} 진료 장면`} width={1536} height={1024} loading={i < 2 ? "eager" : "lazy"} />
+            <div className="veil" />
+            <div className="t">
+              <span className="n">0{i + 1}</span>
+              <h2>{TRACKS[k].name}</h2>
+              <p>{INTRO_META[k][0]}</p>
+              <span className="go">{TRACKS[k].short} 전용 메인 →</span>
+            </div>
+          </Link>
+        ))}
       </div>
-    </>
+    </section>
   );
 }
 export { Icon };
