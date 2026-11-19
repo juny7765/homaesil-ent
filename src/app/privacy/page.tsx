@@ -1,8 +1,7 @@
 import { Header, Footer } from "@/components/chrome";
 import { Section, H2 } from "@/components/ui";
 import { CLINIC } from "@/lib/content";
-import { pageMeta } from "@/lib/seo";
-export const metadata = pageMeta("개인정보처리방침", `${CLINIC.name} 개인정보처리방침`, "/privacy/");
+export const metadata = { title: "개인정보처리방침", robots: { index: false } };
 
 const S = ({ t, children }: { t: string; children: React.ReactNode }) => <section style={{ marginTop: 28 }}><h3 style={{ fontSize: 17, marginBottom: 8 }}>{t}</h3>{children}</section>;
 
