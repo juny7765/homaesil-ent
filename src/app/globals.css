@@ -167,13 +167,13 @@ a.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); color: in
 .tile2:hover { color: #fff; }
 .tile2 img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; transition: transform .9s cubic-bezier(.2,.7,.2,1); }
 .tile2:hover img { transform: scale(1.05); }
-.tile2 .veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.22) 30%, rgba(0,0,0,0) 52%); }
-.tile2 .t { position: absolute; left: 0; right: 0; top: 0; padding: 36px 40px 0; display: flex; flex-direction: column; gap: 6px; }
-.tile2 .n { font-size: 13px; letter-spacing: .14em; color: rgba(255,255,255,.7); font-weight: 600; }
-.tile2 h2 { font-size: 40px; font-weight: 700; letter-spacing: -.035em; line-height: 1.15; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,.35); }
+.tile2 .veil { position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(0,0,0,.28) 0%, rgba(0,0,0,.08) 55%, rgba(0,0,0,0) 100%); }
+.tile2 .t { position: absolute; inset: 0; padding: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 8px; }
+.tile2 .n { font-size: 12px; letter-spacing: .28em; color: rgba(255,255,255,.75); font-weight: 600; text-transform: uppercase; }
+.tile2 h2 { font-size: 42px; font-weight: 700; letter-spacing: -.035em; line-height: 1.15; color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,.45); }
 .tile2 h2::before { display: none; }
 .tile2 p { font-size: 16px; color: rgba(255,255,255,.92); text-shadow: 0 1px 8px rgba(0,0,0,.4); }
-.tile2 .go { margin-top: 14px; font-size: 14px; font-weight: 600; color: #fff; opacity: .85; display: inline-flex; align-items: center; gap: 6px; transition: opacity .2s, transform .2s; }
+.tile2 .go { margin-top: 18px; font-size: 14px; font-weight: 600; color: #fff; opacity: .85; display: inline-flex; align-items: center; gap: 6px; transition: opacity .2s, transform .2s; }
 .tile2:hover .go { opacity: 1; transform: translateX(4px); }
 .intro-page .ftr { margin-top: 0; }
 
@@ -222,7 +222,7 @@ a.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); color: in
   .splash p { font-size: 34px; padding: 0 24px; }
   .intro2 .grid4 { grid-template-columns: 1fr; grid-template-rows: none; }
   .tile2 { min-height: 0; height: 58vw; max-height: 420px; min-height: 260px; }
-  .tile2 .t { padding: 22px 24px 0; } .tile2 h2 { font-size: 28px; } .tile2 p { font-size: 14px; }
+  .tile2 .t { padding: 24px; } .tile2 h2 { font-size: 28px; } .tile2 p { font-size: 14px; }
   .hero .pic img, .hero .pic .poster { height: 260px; }
   .check { grid-template-columns: 1fr; }
   .visit .hours { grid-template-columns: 1fr; }

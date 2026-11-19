@@ -107,7 +107,7 @@ export function Intro() {
             <img src={`/img/tile_${k}.jpg`} alt={`${TRACKS[k].name} 진료 장면`} width={1536} height={1024} loading="eager" />
             <div className="veil" />
             <div className="t">
-              <span className="n">0{i + 1}</span>
+              <span className="n">{TRACKS[k].url.replace(/\//g, "")} clinic</span>
               <h2>{TRACKS[k].name}</h2>
               <p>{INTRO_META[k][0]}</p>
               <span className="go">{TRACKS[k].short} 전용 메인 →</span>
