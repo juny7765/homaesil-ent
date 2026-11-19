@@ -149,7 +149,7 @@ a.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); color: in
 /* intro — 풀스크린 4분할 */
 .intro-page .hdr .cta { background: var(--brand); box-shadow: none; }
 .intro-page .hdr .cta:hover { background: var(--brand2); }
-.intro2 { display: flex; flex-direction: column; min-height: calc(100vh - 73px); background: var(--brand2); }
+.intro2 { display: flex; flex-direction: column; min-height: calc(100vh - 73px); background: #fff; }
 .splash { position: fixed; inset: 0; z-index: 100; background: #fff; display: flex; align-items: center; justify-content: center; text-align: center; cursor: pointer; }
 .splash p { display: flex; flex-direction: column; gap: 16px; font-size: 56px; font-weight: 700; letter-spacing: -.035em; line-height: 1.25; color: var(--ink); }
 .splash p span { opacity: 0; transform: translateY(18px); animation: splash-in 1.4s cubic-bezier(.2,.7,.2,1) forwards; }
@@ -157,23 +157,35 @@ a.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); color: in
 .splash.out { animation: splash-out 1.6s ease-in-out forwards; }
 @keyframes splash-in { to { opacity: 1; transform: none; } }
 @keyframes splash-out { to { opacity: 0; visibility: hidden; } }
-.intro2 .grid4 { animation: grid-in 2.2s ease .4s both; }
-.intro-page .hdr { animation: grid-in 1.6s ease 1s both; }
+.intro-page .grid4 { opacity: 0; }
+.intro-ready .intro-page .grid4 { animation: grid-in 1.6s ease both; }
+.intro-page .hdr { opacity: 0; }
+.intro-ready .intro-page .hdr { animation: grid-in 1.2s ease .3s both; }
 @keyframes grid-in { from { opacity: 0; transform: scale(1.03); } to { opacity: 1; transform: none; } }
 .intro2 .grid4 { flex: 1 1 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 3px; background: #fff; min-height: 0; }
-.tile2 { position: relative; display: block; overflow: hidden; min-height: 300px; color: #fff; background: var(--brand2); }
+.tile2 { position: relative; display: block; overflow: hidden; min-height: 300px; color: #fff; background: #fff; }
 .tile2:hover { color: #fff; }
 .tile2 img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; transition: transform .9s cubic-bezier(.2,.7,.2,1); }
 .tile2:hover img { transform: scale(1.05); }
-.tile2 .veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,31,66,0) 35%, rgba(11,31,66,.55) 72%, rgba(11,31,66,.82) 100%); }
-.tile2 .t { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 40px 40px; display: flex; flex-direction: column; gap: 6px; }
+.tile2 .veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.22) 30%, rgba(0,0,0,0) 52%); }
+.tile2 .t { position: absolute; left: 0; right: 0; top: 0; padding: 36px 40px 0; display: flex; flex-direction: column; gap: 6px; }
 .tile2 .n { font-size: 13px; letter-spacing: .14em; color: rgba(255,255,255,.7); font-weight: 600; }
-.tile2 h2 { font-size: 40px; font-weight: 700; letter-spacing: -.035em; line-height: 1.15; color: #fff; }
+.tile2 h2 { font-size: 40px; font-weight: 700; letter-spacing: -.035em; line-height: 1.15; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,.35); }
 .tile2 h2::before { display: none; }
-.tile2 p { font-size: 16px; color: rgba(255,255,255,.88); }
+.tile2 p { font-size: 16px; color: rgba(255,255,255,.92); text-shadow: 0 1px 8px rgba(0,0,0,.4); }
 .tile2 .go { margin-top: 14px; font-size: 14px; font-weight: 600; color: #fff; opacity: .85; display: inline-flex; align-items: center; gap: 6px; transition: opacity .2s, transform .2s; }
 .tile2:hover .go { opacity: 1; transform: translateX(4px); }
 .intro-page .ftr { margin-top: 0; }
+
+/* 병원소개 의료진 — 사진 좌측 전체 높이, 우측 소개+일정 */
+.docs2 { display: flex; flex-direction: column; gap: 20px; }
+.doc2 { display: flex; gap: 28px; padding: 28px; border-radius: var(--r-card); background: #fff; border: 1px solid var(--line); align-items: stretch; }
+.doc2 img { width: 240px; height: auto; min-height: 300px; align-self: stretch; border-radius: 16px; object-fit: cover; object-position: center top; flex: none; }
+.doc2 .body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
+.doc2 b { font-size: 22px; } .doc2 .spec { font-size: 15px; color: var(--brand); font-weight: 600; margin-top: 4px; }
+.doc2 .tr { font-size: 13px; color: var(--mute); margin-top: 2px; }
+.doc2 ul { font-size: 14px; color: var(--ink2); line-height: 1.7; padding-left: 18px; list-style: disc; margin: 12px 0 20px; }
+.doc2 .tbl { margin-top: auto; }
 
 /* footer */
 .ftr { background: var(--brand); color: #fff; margin-top: 24px; }
@@ -210,7 +222,7 @@ a.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); color: in
   .splash p { font-size: 34px; padding: 0 24px; }
   .intro2 .grid4 { grid-template-columns: 1fr; grid-template-rows: none; }
   .tile2 { min-height: 0; height: 58vw; max-height: 420px; min-height: 260px; }
-  .tile2 .t { padding: 0 24px 24px; } .tile2 h2 { font-size: 28px; } .tile2 p { font-size: 14px; }
+  .tile2 .t { padding: 22px 24px 0; } .tile2 h2 { font-size: 28px; } .tile2 p { font-size: 14px; }
   .hero .pic img, .hero .pic .poster { height: 260px; }
   .check { grid-template-columns: 1fr; }
   .visit .hours { grid-template-columns: 1fr; }
@@ -218,4 +230,5 @@ a.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); color: in
 @media (max-width: 600px) {
   .g2, .g3, .g4 { grid-template-columns: 1fr; }
   .doc { flex-direction: column; } .doc img { width: 96px; height: 120px; }
+  .doc2 { flex-direction: column; padding: 20px; } .doc2 img { width: 140px; min-height: 0; height: 175px; align-self: flex-start; }
 }

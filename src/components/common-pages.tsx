@@ -24,20 +24,20 @@ export async function About() {
   return (
     <>
       <section className="hero" style={{ background: "var(--tint)" }}><div className="wrap">
-        <div className="txt"><Eyebrow>병원소개 · /about/</Eyebrow>
-          <h1 className="h1" style={{ fontSize: 40 }}>이비인후과 전문의 2인과 소아청소년과 전문의가<br />함께 진료하는 호매실연세이비인후과</h1>
-          <p className="lead">수원 권선구 호매실에서 귀·코·목 진료와 수면·어지럼증·성장 클리닉을 운영합니다. 수술실과 1인 수면검사실, 청력·평형·X-ray 검사실을 갖추고 있습니다.</p>
-          <div className="actions"><Btn href="#doctors">의료진 보기</Btn><Btn href="/visit/" kind="s">진료·방문안내</Btn></div></div>
+        <div className="txt"><Eyebrow>병원소개</Eyebrow>
+          <h1 className="h1" style={{ fontSize: 40 }}>호매실연세이비인후과의원은<br />이비인후과 전문의 2인과<br />소아청소년과 전문의가 진료합니다.</h1>
+          <div className="actions"><Btn href="/visit/" kind="s">진료·방문안내</Btn></div></div>
         <div className="pic"><img src="/img/hero_about.jpg" alt="호매실연세이비인후과 접수·대기 공간" width={1536} height={1024} fetchPriority="high" /></div>
       </div></section>
       <Section id="doctors"><H2>진료하는 의료진</H2>
-        <div className="docs">{(Object.keys(DOCS) as (keyof typeof DOCS)[]).map((k) => { const d = DOCS[k]; return (
-          <div className="doc" key={k} style={{ flexDirection: "column" }}>
-            <div style={{ display: "flex", gap: 18 }}>
-              <img src={`/img/doc_${k}.jpg`} alt={`${d.name} 프로필`} width={136} height={170} style={{ width: 136, height: 170 }} />
-              <div><b>{d.name}</b><div className="spec">{d.spec}</div><div style={{ fontSize: 13, color: "var(--mute)" }}>담당 · {d.tracks}</div><ul>{d.lines.map((l) => <li key={l}>{l}</li>)}</ul></div>
+        <div className="docs2">{(Object.keys(DOCS) as (keyof typeof DOCS)[]).map((k) => { const d = DOCS[k]; return (
+          <div className="doc2" key={k}>
+            <img src={`/img/doc_${k}.jpg`} alt={`${d.name} 프로필`} width={480} height={600} loading="lazy" />
+            <div className="body">
+              <b>{d.name}</b><div className="spec">{d.spec}</div><div className="tr">담당 · {d.tracks}</div>
+              <ul>{d.lines.map((l) => <li key={l}>{l}</li>)}</ul>
+              <Table head={["요일", "월", "화", "수", "목", "금", "토", "일"]} rows={SCHED[k]} />
             </div>
-            <Table head={["요일", "월", "화", "수", "목", "금", "토", "일"]} rows={SCHED[k]} />
           </div>); })}</div>
       </Section>
       <Section alt><H2>언론보도</H2>

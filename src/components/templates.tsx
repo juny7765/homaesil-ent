@@ -104,7 +104,7 @@ export function Intro() {
       <div className="grid4">
         {ORDER.map((k, i) => (
           <Link className="tile2" key={k} href={TRACKS[k].url}>
-            <img src={`/img/hero_${k}.jpg`} alt={`${TRACKS[k].name} 진료 장면`} width={1536} height={1024} loading={i < 2 ? "eager" : "lazy"} />
+            <img src={`/img/tile_${k}.jpg`} alt={`${TRACKS[k].name} 진료 장면`} width={1536} height={1024} loading="eager" />
             <div className="veil" />
             <div className="t">
               <span className="n">0{i + 1}</span>
