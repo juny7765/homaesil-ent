@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { IntroSplash } from "./splash";
 import { MAIN, TRACKS, TrackKey, SubPage, href, hubHref, REVIEWER, CLINIC, ORDER } from "@/lib/content";
 import { Btn, BookBtn, Card, Check, Chips, Crumb, Doctors, Eyebrow, Faq, Grid, H2, Section, Steps, Table, Visit, Icon } from "./ui";
 
@@ -98,9 +99,8 @@ const INTRO_META: Record<TrackKey, [string, string]> = {
 export function Intro() {
   return (
     <section className="intro2">
-      <div className="greet">
-        <h1>안녕하세요 호매실연세이비인후과 입니다.</h1>
-      </div>
+      <IntroSplash />
+      <h1 className="sr">안녕하세요 호매실연세이비인후과입니다.</h1>
       <div className="grid4">
         {ORDER.map((k, i) => (
           <Link className="tile2" key={k} href={TRACKS[k].url}>
