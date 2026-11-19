@@ -151,14 +151,15 @@ a.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); color: in
 .intro-page .hdr .cta:hover { background: var(--brand2); }
 .intro2 { display: flex; flex-direction: column; min-height: calc(100vh - 73px); background: var(--brand2); }
 .splash { position: fixed; inset: 0; z-index: 100; background: #fff; display: flex; align-items: center; justify-content: center; text-align: center; cursor: pointer; }
-.splash p { display: flex; flex-direction: column; gap: 10px; font-size: 40px; font-weight: 700; letter-spacing: -.035em; line-height: 1.25; color: var(--ink); }
-.splash p span { opacity: 0; transform: translateY(14px); animation: splash-in .7s cubic-bezier(.2,.7,.2,1) forwards; }
-.splash p span:nth-child(2) { animation-delay: .35s; color: var(--brand); }
-.splash.out { animation: splash-out .7s ease forwards; }
+.splash p { display: flex; flex-direction: column; gap: 16px; font-size: 56px; font-weight: 700; letter-spacing: -.035em; line-height: 1.25; color: var(--ink); }
+.splash p span { opacity: 0; transform: translateY(18px); animation: splash-in 1.4s cubic-bezier(.2,.7,.2,1) forwards; }
+.splash p span:nth-child(2) { animation-delay: .9s; color: var(--brand); }
+.splash.out { animation: splash-out 1.6s ease-in-out forwards; }
 @keyframes splash-in { to { opacity: 1; transform: none; } }
 @keyframes splash-out { to { opacity: 0; visibility: hidden; } }
-.intro2 .grid4 { animation: grid-in 1s ease .2s both; }
-@keyframes grid-in { from { opacity: 0; } to { opacity: 1; } }
+.intro2 .grid4 { animation: grid-in 2.2s ease .4s both; }
+.intro-page .hdr { animation: grid-in 1.6s ease 1s both; }
+@keyframes grid-in { from { opacity: 0; transform: scale(1.03); } to { opacity: 1; transform: none; } }
 .intro2 .grid4 { flex: 1 1 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 3px; background: #fff; min-height: 0; }
 .tile2 { position: relative; display: block; overflow: hidden; min-height: 300px; color: #fff; background: var(--brand2); }
 .tile2:hover { color: #fff; }
@@ -206,7 +207,7 @@ a.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); color: in
   .h1 { font-size: 32px; } .h1.sm { font-size: 30px; } .h2 { font-size: 24px; }
   .g3, .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .intro2 { min-height: 0; }
-  .splash p { font-size: 26px; padding: 0 24px; }
+  .splash p { font-size: 34px; padding: 0 24px; }
   .intro2 .grid4 { grid-template-columns: 1fr; grid-template-rows: none; }
   .tile2 { min-height: 0; height: 58vw; max-height: 420px; min-height: 260px; }
   .tile2 .t { padding: 0 24px 24px; } .tile2 h2 { font-size: 28px; } .tile2 p { font-size: 14px; }

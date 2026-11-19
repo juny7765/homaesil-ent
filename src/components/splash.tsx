@@ -11,8 +11,8 @@ export function IntroSplash() {
       sessionStorage.setItem("hs_splash", "1");
     } catch { /* storage 불가 시에도 1회 표시 */ }
     setState("show");
-    const t1 = setTimeout(() => setState("out"), 2200);
-    const t2 = setTimeout(() => setState("hidden"), 2900);
+    const t1 = setTimeout(() => setState("out"), 3800);
+    const t2 = setTimeout(() => setState("hidden"), 5500);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
   if (state === "hidden") return null;
