@@ -82,7 +82,6 @@ export function Visit() {
         <a className="tel" href={`tel:${CLINIC.tel.replace(/-/g, "")}`}>{CLINIC.tel}</a>
         <p>진료시간 내 전화 예약 · 검사 상담</p>
         <div className="actions"><Btn href={`tel:${CLINIC.tel.replace(/-/g, "")}`}>전화 걸기</Btn><Btn href="/visit/" kind="w">진료·방문안내</Btn></div>
-        <div className="mail">{CLINIC.email}</div>
       </div>
     </div>
   );
