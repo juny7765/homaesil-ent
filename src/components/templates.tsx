@@ -79,7 +79,7 @@ export function SubTemplate({ track, page, url, parent }: { track: TrackKey; pag
         <div className="box">준비사항 · {(d.prep as string[]).join(" · ")}</div></Section>}
       {kind === "A" && <Section alt={alt()}><H2>치료와 관리</H2>
         <Grid cols={3}>{(d.treat as string[][]).map((x) => x.length > 2 ? <Card key={x[0]} title={x[0]} body={x[1]} href={href(x[2])} /> : <div className="plain" key={x[0]}><h3>{x[0]}</h3><p>{x[1]}</p></div>)}</Grid></Section>}
-      {kind === "C" && <><Section alt={alt()}><H2>선택지 비교</H2><Table head={d.compare_h} rows={d.compare} /></Section><Section alt={alt()}><H2>치료 후 관리</H2><Check items={d.after} /></Section></>}
+      {kind === "C" && <><Section alt={alt()}><H2>{compareTitle(d.compare_h)}</H2><Table head={d.compare_h} rows={d.compare} /></Section><Section alt={alt()}><H2>치료 후 관리</H2><Check items={d.after} /></Section></>}
 
       <Section alt={alt()}><H2>진료하는 의료진</H2><Doctors track={track} slug={slug} /></Section>
       <Section alt={alt()}><H2>자주 묻는 질문</H2><Faq items={d.faq} reviewer={REVIEWER[track]} /></Section>
@@ -96,6 +96,13 @@ const INTRO_META: Record<TrackKey, [string, string]> = {
   growth: ["키 성장·성조숙증·소아비만 평가와 관리", "아이의 키·사춘기 속도가 걱정되는 보호자"],
   ent: ["증상별 이비인후과 진료 안내", "귀·코·목 불편으로 진료를 찾는 분"],
 };
+/** 비교표 제목: "구분" 표는 선택지를 vs로, 항목형 표는 "○○별 비교" */
+function compareTitle(h: string[] = []) {
+  if (!h.length) return "비교";
+  if (h[0] === "구분") return h.slice(1).filter((x) => x !== "확인 사항").join(" vs ");
+  return `${h[0]}별 비교`;
+}
+
 export function Intro() {
   return (
     <section className="intro2">
