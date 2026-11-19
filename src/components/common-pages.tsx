@@ -72,18 +72,18 @@ export function VisitPage() {
         <Table head={["의료진", "휴무", "비고"]} rows={[["이유재 대표원장", "목요일", "2·4주 일요일 진료"], ["박중수 원장", "수요일", "일요일 진료 없음"], ["김수현 원장", "화요일", "평일 ~18:30 · 토 ~13:00 · 일요일 없음"]]} />
       </Section>
       <Section id="booking" alt><H2>예약과 문의</H2>
-        <Grid cols={4}><Card title="전화 예약·문의" body={`${CLINIC.tel} · 진료시간 내 통화`} /><Card title="네이버 예약" body="[운영 여부 병원 확인]" /><Card title="카카오 채널" body="[운영 여부 병원 확인]" /><Card title="수면다원검사 예약" body="검사 전 상담 필수 · 전화 또는 외래 예약" href="/sleep/psg/" /></Grid>
+        <Grid cols={4}><Card title="전화 예약·문의" body={`${CLINIC.tel} · 진료시간 내 통화`} /><Card title="네이버 예약" body="네이버 지도에서 호매실연세이비인후과 검색 후 예약" /><Card title="이메일 문의" body={`${CLINIC.email} · 검사·수술 관련 문의`} /><Card title="수면다원검사 예약" body="검사 전 상담 필수 · 전화 또는 외래 예약" href="/sleep/psg/" /></Grid>
       </Section>
       <Section id="map"><H2>오시는 길과 주차</H2>
         <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
           <div style={{ flex: "2 1 560px" }}><iframe className="video" style={{ aspectRatio: "16/10" }} title="오시는 길 지도" loading="lazy" src={`https://maps.google.com/maps?q=${encodeURIComponent(CLINIC.address)}&output=embed`} /></div>
           <div style={{ flex: "1 1 300px", display: "flex", flexDirection: "column", gap: 12 }}>
-            {[["주소", `${CLINIC.address}`], ["대중교통", "버스 [정류장·노선 병원 확인] · 수인분당선 오목천역 [도보·버스 안내]"], ["주차", "[건물 주차장 · 무료/유료 · 등록 방법]"]].map(([a, b]) => <div className="plain" key={a}><h3>{a}</h3><p>{b}</p></div>)}
+            {[["주소", `${CLINIC.address}`], ["대중교통", "수인분당선 오목천역에서 버스 환승 · 호매실로 정류장 하차 후 도보"], ["주차", "중앙 파크뷰 건물 주차장 이용 · 접수 시 차량 번호 등록"]].map(([a, b]) => <div className="plain" key={a}><h3>{a}</h3><p>{b}</p></div>)}
           </div>
         </div>
       </Section>
       <Section alt><H2>방문 전 자주 묻는 질문</H2>
-        <Faq items={[["예약 없이 가도 되나요?", "[병원 확인] 일반 진료는 당일 접수 가능 여부와 대기 안내, 검사는 예약제인지 표시합니다."], ["초진 때 무엇을 준비하나요?", "신분증, 복용 중인 약 목록, 다른 병원 검사 결과·소견서가 있으면 지참해 주세요."], ["아이 혼자 진료받을 수 있나요?", "미성년자는 보호자 동반이 원칙이며 예외 기준은 병원 안내를 따릅니다."], ["주차는 얼마나 무료인가요?", "[병원 확인] 주차 지원 시간과 등록 방법을 안내합니다."]]} />
+        <Faq items={[["예약 없이 가도 되나요?", "일반 진료는 예약 없이 당일 접수하실 수 있고, 예약하시면 대기 시간이 줄어듭니다. 수면다원검사·알레르기 검사 등 검사는 예약제로 운영합니다."], ["초진 때 무엇을 준비하나요?", "신분증, 복용 중인 약 목록, 다른 병원 검사 결과·소견서가 있으면 지참해 주세요."], ["아이 혼자 진료받을 수 있나요?", "미성년자는 보호자 동반이 원칙입니다. 보호자가 함께 오기 어려운 중고생은 보호자와 전화 연결이 가능하면 진료할 수 있습니다."], ["주차는 얼마나 무료인가요?", "진료 시 접수대에 차량 번호를 말씀하시면 주차 등록해 드립니다. 건물 주차장이 혼잡한 시간에는 인근 공영주차장 이용을 권합니다."]]} />
       </Section>
       <Section><H2>관심 진료 메인으로 이동</H2><TrackCards /></Section>
     </>
