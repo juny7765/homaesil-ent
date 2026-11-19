@@ -44,3 +44,10 @@ npm run build                # out/ 에 정적 사이트 생성
 
 ## 보류
 - 연세대 로고 워터마크(의료진 섹션): 적용 코드 보류 중. 적용 시 `public/img/yonsei_logo.png` 추가 후 Doctors 컴포넌트에 배경 삽입
+
+## V2 원고 자동 연동 (sync-v2)
+- Edge Function `supabase/functions/sync-v2`: V2(contentauto-V2) DB에서 광고주 13(호매실) 승인 원고를 읽어 `health_posts`에 **published=false**로 적재. 마크다운→HTML 변환, 트랙 자동 분류(키워드 규칙), 검토 의료진 자동 지정, `source='v2', source_id=final_contents.id`로 중복 방지.
+- 실행 경로: ① 관리자 페이지 건강정보 탭 "V2 원고 가져오기" 버튼 ② pg_cron `sync-v2-daily` 매일 05:00 KST → `public.run_sync_v2()`.
+- 승인 흐름: 관리자에서 내용 확인 → "비공개" 버튼을 눌러 "공개"로 전환 → "사이트 다시 빌드".
+- V2 읽기 권한: 함수는 `V2_SUPABASE_ANON_KEY` 시크릿(없으면 V2 publishable 키)을 사용. V2 테이블에 anon SELECT 권한이 없으면 401이 나므로, V2 서비스 롤 키를 시크릿에 넣거나 V2에 읽기 전용 뷰 권한을 부여해야 함.
+- 실행 기록: `sync_log` 테이블.
