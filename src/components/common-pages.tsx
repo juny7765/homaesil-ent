@@ -40,9 +40,9 @@ export async function About() {
             </div>
           </div>); })}</div>
       </Section>
-      <Section alt><H2>언론보도</H2>
+      {press.length > 0 && <Section alt><H2>언론보도</H2>
         <Grid cols={4}>{press.map((p) => <a className="plain" key={p.id} href={p.url === "#" ? "/about/#press" : p.url} target={p.url === "#" ? undefined : "_blank"} rel="noopener"><h3>{p.title}</h3><p>{p.outlet} · {p.published_at}</p></a>)}</Grid>
-      </Section>
+      </Section>}
       <Section><H2>병원의 진료 방향</H2>
         <Grid cols={3}>
           {[["검사로 원인을 확인합니다", "수면다원검사·평형 검사·청력 검사·성장판 검사 등 객관적 검사 결과를 바탕으로 진료 방향을 정합니다."], ["결과를 설명하고 함께 결정합니다", "치료를 온라인이나 전화로 확정하지 않고, 결과 설명 뒤 환자·보호자와 선택지를 함께 검토합니다."], ["두 과가 연계해 진료합니다", "이비인후과 전문의 2인과 소아청소년과 전문의 1인이 코골이·성장·소아 질환을 한 병원 안에서 연계합니다."]].map(([a, b]) => <div className="plain" key={a}><h3>{a}</h3><p>{b}</p></div>)}

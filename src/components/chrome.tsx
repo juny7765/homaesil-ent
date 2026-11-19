@@ -34,7 +34,7 @@ export function Footer() {
         <div className="b">
           <b>{CLINIC.name}</b>
           {CLINIC.address}<br />대표번호 {CLINIC.tel} · {CLINIC.email}<br />
-          대표원장 이유재 · 사업자등록번호 [병원 확인] · 의료기관 개설신고번호 [병원 확인]
+          대표원장 이유재
         </div>
         <div className="l">{ORDER.map((k) => <Link key={k} href={TRACKS[k].url}>{TRACKS[k].name}</Link>)}</div>
         <div className="l">{COMMON.map(([h, t]) => <Link key={h} href={h}>{t}</Link>)}<Link href="/privacy/">개인정보처리방침</Link></div>
