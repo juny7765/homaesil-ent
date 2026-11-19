@@ -88,8 +88,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .card { display: flex; flex-direction: column; gap: 10px; padding: 24px; border-radius: var(--r-card); background: #fff; border: 1px solid var(--line); min-height: 170px; transition: box-shadow .2s, transform .2s; }
 a.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); color: inherit; }
-.card .ico { width: 56px; height: 56px; border-radius: 14px; background: var(--accent-soft); display: inline-flex; align-items: center; justify-content: center; }
-.card .ico svg { width: 36px; height: 36px; }
+.card .ico { width: 56px; height: 56px; border-radius: 16px; background: var(--soft); color: var(--brand); display: inline-flex; align-items: center; justify-content: center; }
+.card .ico svg { width: 28px; height: 28px; }
 .card h3 { font-size: 17px; font-weight: 700; }
 .card p { font-size: 14px; line-height: 1.6; color: var(--ink2); }
 .card .more { margin-top: auto; font-size: 14px; font-weight: 600; color: var(--accent); }
