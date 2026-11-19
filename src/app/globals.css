@@ -28,8 +28,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .hdr { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
 .hdr .wrap { display: flex; align-items: center; gap: 28px; min-height: 72px; }
 .logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; letter-spacing: -.02em; color: var(--brand); white-space: nowrap; }
-.logo i { width: 34px; height: 34px; border-radius: 10px; background: var(--orange); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-style: normal; font-weight: 900; font-size: 18px; }
-.logo em { font-style: normal; color: var(--orange); }
+.logo img { height: 30px; width: auto; display: block; }
 .nav { display: flex; gap: 4px; margin-left: 8px; }
 .nav a { padding: 10px 14px; border-radius: 10px; font-size: 15px; font-weight: 600; color: var(--ink2); }
 .nav a.on, .nav a:hover { color: var(--brand); background: var(--soft); }
@@ -216,6 +215,7 @@ a.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); color: in
   .wrap { padding: 0 20px; }
   .section { padding: 56px 0; }
   .nav, .util { display: none; }
+  .logo img { height: 26px; }
   .menu-btn { display: inline-flex; align-items: center; justify-content: center; }
   .h1 { font-size: 32px; } .h1.sm { font-size: 30px; } .h2 { font-size: 24px; }
   .g3, .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }

@@ -8,7 +8,7 @@ export function Header({ current }: { current?: TrackKey | string }) {
     <header className="hdr">
       <input type="checkbox" id="m" className="sr" aria-label="메뉴 열기" />
       <div className="wrap">
-        <Link href="/" className="logo" aria-label={`${CLINIC.name} 홈`}><i>h</i>호매실연세<em>이비인후과</em></Link>
+        <Link href="/" className="logo" aria-label={`${CLINIC.name} 홈`}><img src="/img/logo.png" alt={CLINIC.name} width={286} height={41} /></Link>
         <nav className="nav" aria-label="주요 메뉴">
           {ORDER.map((k) => <Link key={k} href={TRACKS[k].url} className={current === k ? "on" : ""}>{TRACKS[k].name}</Link>)}
         </nav>
