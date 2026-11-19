@@ -3,7 +3,7 @@
   --ink: #141a22; --ink2: #4b5563; --mute: #8792a2; --line: #e3e8ef;
   --bg: #ffffff; --bg2: #f5f7fa; --soft: #eef2f8; --tint: #edf1f7;
   --brand: #15305c; --brand2: #0b1f42;
-  --accent: #ee6f2d; --accent-soft: #fdefe4; --orange: #e8792e;
+  --accent: #b47845; --accent-soft: #f6ede4; --orange: #b47845;
   --r-card: 18px; --r-photo: 20px; --max: 1280px;
   --shadow: 0 12px 32px rgba(21, 48, 92, .12);
   --font: "Pretendard Variable", Pretendard, "Noto Sans KR", -apple-system, system-ui, sans-serif;
@@ -43,7 +43,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* buttons */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 24px; border-radius: 999px; font-size: 15px; font-weight: 600; border: 1.5px solid transparent; transition: transform .15s, box-shadow .15s; }
 .btn:hover { transform: translateY(-1px); }
-.btn.p { background: var(--accent); color: #fff; box-shadow: 0 6px 16px rgba(238,111,45,.25); }
+.btn.p { background: var(--accent); color: #fff; box-shadow: 0 6px 16px rgba(180,120,69,.28); }
 .btn.p:hover { color: #fff; }
 .btn.s { border-color: var(--brand); color: var(--brand); background: #fff; }
 .btn.w { border-color: rgba(255,255,255,.6); color: #fff; }
@@ -146,8 +146,6 @@ a.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); color: in
 .visit .book .tel { font-size: 26px; font-weight: 800; letter-spacing: -.01em; }
 
 /* intro — 풀스크린 4분할 */
-.intro-page .hdr .cta { background: var(--brand); box-shadow: none; }
-.intro-page .hdr .cta:hover { background: var(--brand2); }
 .intro2 { display: flex; flex-direction: column; min-height: calc(100vh - 73px); background: #fff; }
 .splash { position: fixed; inset: 0; z-index: 100; background: #fff; display: flex; align-items: center; justify-content: center; text-align: center; cursor: pointer; }
 .splash p { display: flex; flex-direction: column; gap: 16px; font-size: 56px; font-weight: 700; letter-spacing: -.035em; line-height: 1.25; color: var(--ink); }

@@ -13,7 +13,7 @@ export function TrackMain({ k }: { k: TrackKey }) {
           <Eyebrow>{t.name}</Eyebrow>
           <h1 className="h1">{m.h1}</h1>
           <p className="lead">{m.sub}</p>
-          <div className="actions"><BookBtn /><Btn href="#flow" kind="s">진료 흐름 보기</Btn></div>
+          <div className="actions"><BookBtn /></div>
         </div>
         <div className="pic"><img src={`/img/hero_${k}.jpg`} alt={`${t.name} 진료 장면`} width={1152} height={768} fetchPriority="high" /></div>
       </div></section>
@@ -60,7 +60,7 @@ export function SubTemplate({ track, page, url, parent }: { track: TrackKey; pag
           <Eyebrow>{t.name}</Eyebrow>
           <h1 className="h1 sm">{title}</h1>
           <div className="answer">{d.answer}</div>
-          <div className="actions"><BookBtn /><Btn href="#flow" kind="s">진료 흐름 보기</Btn></div>
+          <div className="actions"><BookBtn /></div>
         </div>
         <div className="pic">{hasPoster && pic}</div>
       </div></section>
