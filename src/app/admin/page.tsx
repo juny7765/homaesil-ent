@@ -39,9 +39,9 @@ export default function Admin() {
     setMsg("V2 원고를 가져오는 중입니다…");
     const { data, error } = await sb!.functions.invoke("sync-v2", { body: {} });
     if (error) { setMsg(`가져오기 실패: ${error.message}`); return; }
-    const d = data as { fetched: number; inserted: number; skipped: number; error?: string | null };
+    const d = data as { fetched: number; inserted: number; skipped: number; short?: number; error?: string | null };
     if (d?.error) { setMsg(`가져오기 실패: ${d.error}`); return; }
-    setMsg(`V2 승인 원고 ${d.fetched}건 확인 — 새로 ${d.inserted}건을 '비공개'로 가져왔습니다(이미 있는 ${d.skipped}건 제외). 내용 확인 후 '발행'에 체크하고 저장하면 사이트에 반영됩니다.`);
+    setMsg(`V2 승인 원고 ${d.fetched}건 확인 — 새로 ${d.inserted}건을 '비공개'로 가져왔습니다(이미 있는 ${d.skipped}건${d.short ? `, 본문이 비어 있는 ${d.short}건` : ""} 제외). 내용 확인 후 '비공개' 버튼을 눌러 공개로 바꾸고 '사이트 다시 빌드'를 누르면 반영됩니다.`);
     load();
   }
   async function togglePublish(r: any) { if (!sb) return; const { error } = await sb.from(tab).update({ published: !r.published }).eq("id", r.id); if (error) setMsg(error.message); else load(); }

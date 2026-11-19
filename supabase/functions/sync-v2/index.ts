@@ -5,12 +5,12 @@ import { createClient } from "jsr:@supabase/supabase-js@2";
 
 const V2_URL = Deno.env.get("V2_SUPABASE_URL") ?? "https://phcrpjtakigtwscypzxj.supabase.co";
 const V2_KEY = Deno.env.get("V2_SUPABASE_ANON_KEY") ?? "sb_publishable_tzmKk0g5Ey34L3OfeDY9xw_64PFy8It"; // V2 publishable(공개) 키, 시크릿으로 덮어쓰기 가능
-const ADVERTISER_ID = 13; // 호매실연세이비인후과 (V2 advertisers.id)
+// 광고주 13(호매실) 필터는 V2 측 뷰 homaesil_site_feed 안에서 적용됨
 
 const TRACK_RULES: [RegExp, "sleep" | "dizziness" | "growth" | "ent"][] = [
   [/코골이|수면|무호흡|기면|불면|양압기|하지불안|렘수면|과수면/, "sleep"],
   [/어지럼|이석|메니에르|전정|현훈|평형/, "dizziness"],
-  [/성장|키 ?성장|성조숙|소아비만|성장판|골연령/, "growth"],
+  [/성장클리닉|키 ?성장|성장호르몬|성조숙|소아비만|성장판|골연령|성장 ?검사|저신장/, "growth"],
 ];
 const REVIEWER = { sleep: "박중수 원장", dizziness: "이유재 대표원장", growth: "김수현 원장", ent: "이유재 대표원장" };
 const LINK = { sleep: "/sleep/", dizziness: "/dizziness/", growth: "/growth/", ent: "/ent/" };
@@ -24,13 +24,15 @@ function mdToHtml(md: string): string {
   const flushP = () => { if (para.length) { out.push(`<p>${para.map(inline).join(" ")}</p>`); para = []; } };
   const flushL = () => { if (list.length) { out.push(`<ul>${list.map((l) => `<li>${inline(l)}</li>`).join("")}</ul>`); list = []; } };
   for (const raw of md.split(/\r?\n/)) {
-    const line = raw.trim();
-    if (!line) { flushP(); flushL(); continue; }
-    if (/^\[IMAGE_\d+\]$/.test(line) || /^(#\S+\s*)+$/.test(line) || /^<img/i.test(line)) continue;
+    // 이미지 마커·img 태그·구분선 제거 (줄 어디에 있든)
+    let line = raw.replace(/\[IMAGE_\d+\]/g, "").replace(/<img[^>]*>/gi, "").replace(/^[!.\s]+(?=<|#|$)/, "").trim();
+    line = line.replace(/^(\[ \]|☐|□)\s*/, "");
+    if (!line || /^-{3,}$/.test(line)) { flushP(); flushL(); continue; }
+    if (/^(#\S+\s*)+$/.test(line)) continue; // 해시태그 줄
     if (/^#\s/.test(line)) continue; // h1 = 제목 중복
     if (/^##\s/.test(line)) { flushP(); flushL(); out.push(`<h2>${inline(line.replace(/^##\s+/, ""))}</h2>`); continue; }
     if (/^###\s/.test(line)) { flushP(); flushL(); out.push(`<h3>${inline(line.replace(/^###\s+/, ""))}</h3>`); continue; }
-    if (/^[-*•]\s/.test(line)) { flushP(); list.push(line.replace(/^[-*•]\s+/, "")); continue; }
+    if (/^[-*•]\s/.test(line)) { flushP(); list.push(line.replace(/^[-*•]\s+/, "").replace(/^(\[ \]|☐|□)\s*/, "")); continue; }
     if (/^<(h2|h3|p|ul|ol|li|div|footer|span)/i.test(line)) { flushP(); flushL(); out.push(line.replace(/<span class="imgmarker">.*?<\/span>/g, "")); continue; }
     flushL(); para.push(line);
   }
@@ -47,14 +49,14 @@ Deno.serve(async (req) => {
   if (!V2_KEY) return json({ error: "V2_SUPABASE_ANON_KEY 시크릿이 설정되지 않았습니다." }, 500);
 
   const sb = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
-  const log = { fetched: 0, inserted: 0, skipped: 0, error: null as string | null };
+  const log = { fetched: 0, inserted: 0, skipped: 0, short: 0, error: null as string | null };
   try {
-    // 1) V2에서 승인된 호매실 원고 조회 (content_requests → final_contents 임베드)
-    const url = `${V2_URL}/rest/v1/content_requests?select=id,topic,keywords,content_type,final_contents(id,title,body,meta_description,status,approved_at,updated_at)&advertiser_id=eq.${ADVERTISER_ID}&order=id.desc&limit=200`;
+    // V2에 만든 읽기 전용 뷰(homaesil_site_feed): 광고주 13의 승인 원고만 노출
+    const url = `${V2_URL}/rest/v1/homaesil_site_feed?select=*&order=id.desc&limit=500`;
     const r = await fetch(url, { headers: { apikey: V2_KEY, Authorization: `Bearer ${V2_KEY}` } });
     if (!r.ok) throw new Error(`V2 조회 실패 ${r.status}: ${await r.text()}`);
     const rows = (await r.json()) as any[];
-    const items = rows.flatMap((cr) => (cr.final_contents ?? []).filter((fc: any) => ["approved", "published"].includes(fc.status)).map((fc: any) => ({ cr, fc })));
+    const items = rows.map((row) => ({ cr: { topic: row.topic, keywords: row.keywords }, fc: row }));
     log.fetched = items.length;
 
     // 2) 이미 가져온 것 제외
@@ -64,14 +66,16 @@ Deno.serve(async (req) => {
     // 3) 변환 후 미발행(published=false)으로 적재
     const inserts = items.filter(({ fc }) => !have.has(fc.id)).map(({ cr, fc }) => {
       const t = track(`${cr.topic} ${(cr.keywords ?? []).join(" ")} ${fc.title}`);
+      const body = mdToHtml(fc.body ?? "");
+      if (body.replace(/<[^>]+>/g, "").length < 800) { log.short++; return null; } // 본문 누락·이미지만 있는 원고 제외
       return {
         slug: `v2-${fc.id}`, source: "v2", source_id: fc.id, track: t,
-        title: stripTitle(fc.title), summary: (fc.meta_description ?? "").slice(0, 300), body: mdToHtml(fc.body ?? ""),
+        title: stripTitle(fc.title), summary: (fc.meta_description ?? "").slice(0, 300), body,
         reviewer: REVIEWER[t], link: LINK[t], keywords: cr.keywords ?? [], published: false,
         published_at: (fc.approved_at ?? new Date().toISOString()).slice(0, 10),
       };
-    });
-    log.skipped = log.fetched - inserts.length;
+    }).filter((x): x is NonNullable<typeof x> => x !== null);
+    log.skipped = log.fetched - inserts.length - log.short;
     if (inserts.length) { const { error } = await sb.from("health_posts").insert(inserts); if (error) throw error; log.inserted = inserts.length; }
   } catch (e) { log.error = String((e as Error).message ?? e); }
   await sb.from("sync_log").insert(log);
