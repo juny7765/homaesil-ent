@@ -10,7 +10,7 @@ export function TrackMain({ k }: { k: TrackKey }) {
     <>
       <section className="hero"><div className="wrap">
         <div className="txt">
-          <Eyebrow>{t.name} · {t.url}</Eyebrow>
+          <Eyebrow>{t.name}</Eyebrow>
           <h1 className="h1">{m.h1}</h1>
           <p className="lead">{m.sub}</p>
           <div className="actions"><BookBtn /><Btn href="#flow" kind="s">진료 흐름 보기</Btn></div>
@@ -57,7 +57,7 @@ export function SubTemplate({ track, page, url, parent }: { track: TrackKey; pag
       <section className="hero sub"><div className="wrap">
         <div className="txt">
           <Crumb track={track} title={title} parent={parent} />
-          <Eyebrow>{t.name} · {url}</Eyebrow>
+          <Eyebrow>{t.name}</Eyebrow>
           <h1 className="h1 sm">{title}</h1>
           <div className="answer">{d.answer}</div>
           <div className="actions"><BookBtn /><Btn href="#flow" kind="s">진료 흐름 보기</Btn></div>

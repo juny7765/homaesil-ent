@@ -62,7 +62,7 @@ export function VisitPage() {
   return (
     <>
       <section className="hero" style={{ background: "var(--tint)" }}><div className="wrap">
-        <div className="txt"><Eyebrow>진료 및 방문안내 · /visit/</Eyebrow><h1 className="h1" style={{ fontSize: 40 }}>진료시간 · 예약 · 오시는 길</h1>
+        <div className="txt"><Eyebrow>진료 및 방문안내</Eyebrow><h1 className="h1" style={{ fontSize: 40 }}>진료시간 · 예약 · 오시는 길</h1>
           <p className="lead">어떤 클리닉으로 오시든 진료시간·위치·주차·문의 방법은 같습니다.</p>
           <div className="actions"><Btn href={`tel:${CLINIC.tel.replace(/-/g, "")}`}>전화 {CLINIC.tel}</Btn><Btn href="#booking" kind="s">네이버 예약</Btn><Btn href="#map" kind="s">길찾기</Btn></div></div>
         <div className="pic"><img src="/img/hero_visit.jpg" alt="접수 안내 장면" width={1536} height={1024} fetchPriority="high" /></div>
@@ -95,7 +95,7 @@ export async function Health() {
   return (
     <>
       <section className="hero" style={{ background: "var(--tint)" }}><div className="wrap">
-        <div className="txt"><Eyebrow>건강정보 · /health/</Eyebrow><h1 className="h1" style={{ fontSize: 40 }}>환자가 자주 묻는 질문에 의료진이 답합니다</h1>
+        <div className="txt"><Eyebrow>건강정보</Eyebrow><h1 className="h1" style={{ fontSize: 40 }}>환자가 자주 묻는 질문에 의료진이 답합니다</h1>
           <p className="lead">수면·어지럼증·성장·귀코목 네 분야의 질문형 콘텐츠와 병원 공지를 한곳에 모았습니다. 모든 의학 내용은 의료진 검토 후 공개합니다.</p>
           <div className="tabs">{Object.entries(TRACK_LABEL).map(([k, v]) => <a className="tab" key={k} href={`#${k}`}>{v}</a>)}</div></div>
         <div className="pic"><img src="/img/hero_health.jpg" alt="의료진이 건강정보를 검토하는 장면" width={1536} height={1024} fetchPriority="high" /></div>
