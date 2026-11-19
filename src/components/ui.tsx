@@ -64,19 +64,25 @@ export function Doctors({ track, slug }: { track: TrackKey; slug: string }) {
 }
 
 export function Visit() {
+  const rows: [string, string, string][] = [
+    ["평일", "09:00 – 19:30", "소아청소년과 ~18:30"],
+    ["토요일", "09:00 – 14:00", "소아청소년과 ~13:00"],
+    ["2·4주 일요일 · 공휴일", "09:00 – 13:00", ""],
+    ["점심시간", "13:00 – 14:00", ""],
+  ];
   return (
-    <div className="visit">
-      <div className="hours">
-        <div><small>평일</small>월~금 09:00 – 19:30 (소아과 ~18:30)</div>
-        <div><small>토요일</small>09:00 – 14:00 (소아과 ~13:00)</div>
-        <div><small>2·4주 일요일·공휴일</small>09:00 – 13:00</div>
-        <div><small>점심시간</small>13:00 – 14:00 · 수면검사는 예약제</div>
-        <div style={{ gridColumn: "1 / -1" }}><small>오시는 길</small>{CLINIC.address}</div>
+    <div className="visit2">
+      <div className="hrs">
+        <div className="hd"><Icon title="며칠째" /><div><b>진료시간</b><span>수면다원검사는 예약제로 운영합니다</span></div></div>
+        <ul>{rows.map(([d, t, n]) => <li key={d}><span className="d">{d}</span><span className="t">{t}</span><span className="n">{n}</span></li>)}</ul>
+        <div className="addr"><span className="d">오시는 길</span><span>{CLINIC.address}</span><Link href="/visit/#map">지도 보기 →</Link></div>
       </div>
-      <div className="book">
-        <b>예약 · 문의</b>
-        <div className="tel">{CLINIC.tel}</div>
-        <div className="actions"><Btn href={`tel:${CLINIC.tel.replace(/-/g, "")}`}>전화 걸기</Btn><Btn href="/visit/#booking" kind="w">네이버 예약</Btn></div>
+      <div className="bk">
+        <span className="eb">예약 · 문의</span>
+        <a className="tel" href={`tel:${CLINIC.tel.replace(/-/g, "")}`}>{CLINIC.tel}</a>
+        <p>진료시간 내 전화 예약 · 검사 상담</p>
+        <div className="actions"><Btn href={`tel:${CLINIC.tel.replace(/-/g, "")}`}>전화 걸기</Btn><Btn href="/visit/" kind="w">진료·방문안내</Btn></div>
+        <div className="mail">{CLINIC.email}</div>
       </div>
     </div>
   );
