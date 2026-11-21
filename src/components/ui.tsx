@@ -2,11 +2,11 @@ import Link from "next/link";
 import iconsJson from "@/data/icons.json";
 import { CLINIC, DOCS, ORDER, TRACKS, TrackKey, doctorsFor } from "@/lib/content";
 
-const ICONS = iconsJson as unknown as { icons: Record<string, string>; rules: [string, string][] };
+const ICONS = iconsJson as unknown as { icons: Record<string, string>; exact: Record<string, string>; rules: [string, string][] };
 
 export function Icon({ title }: { title: string }) {
-  const rule = ICONS.rules.find(([k]) => title.includes(k));
-  const svg = ICONS.icons[rule ? rule[1] : "default"] ?? ICONS.icons.default;
+  const iconId = ICONS.exact[title] ?? ICONS.rules.find(([k]) => title.includes(k))?.[1] ?? "default";
+  const svg = ICONS.icons[iconId] ?? ICONS.icons.default;
   return <span className="ico" aria-hidden="true" dangerouslySetInnerHTML={{ __html: svg }} />;
 }
 
@@ -73,7 +73,7 @@ export function Visit() {
   return (
     <div className="visit2">
       <div className="hrs">
-        <div className="hd"><Icon title="며칠째" /><div><b>진료시간</b><span>수면다원검사는 예약제로 운영합니다</span></div></div>
+        <div className="hd"><Icon title="진료시간" /><div><b>진료시간</b><span>수면다원검사는 예약제로 운영합니다</span></div></div>
         <ul>{rows.map(([d, t, n]) => <li key={d}><span className="d">{d}</span><span className="t">{t}</span><span className="n">{n}</span></li>)}</ul>
         <div className="addr"><span className="d">오시는 길</span><span>{CLINIC.address}</span><Link href="/visit/#map">지도 보기 →</Link></div>
       </div>
