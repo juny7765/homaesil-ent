@@ -70,18 +70,21 @@ export function Visit() {
     ["2·4주 일요일 · 공휴일", "09:00 – 13:00", ""],
     ["점심시간", "13:00 – 14:00", ""],
   ];
+  const tel = `tel:${CLINIC.tel.replace(/-/g, "")}`;
   return (
     <div className="visit2">
       <div className="hrs">
-        <div className="hd"><Icon title="진료시간" /><div><b>진료시간</b><span>수면다원검사는 예약제로 운영합니다</span></div></div>
+        <div className="hd"><Icon title="며칠째" /><div><b>진료시간</b><span>수면다원검사는 예약제로 운영합니다</span></div></div>
         <ul>{rows.map(([d, t, n]) => <li key={d}><span className="d">{d}</span><span className="t">{t}</span><span className="n">{n}</span></li>)}</ul>
-        <div className="addr"><span className="d">오시는 길</span><span>{CLINIC.address}</span><Link href="/visit/#map">지도 보기 →</Link></div>
+        <div className="addr"><span className="d">오시는 길</span><span>{CLINIC.address}</span></div>
+        <div className="call">
+          <div><span className="eb">예약 · 문의</span><a className="tel" href={tel}>{CLINIC.tel}</a><p>진료시간 내 전화 예약 · 검사 상담</p></div>
+          <div className="actions"><Btn href={tel}>전화 걸기</Btn><Btn href="/visit/" kind="s">진료·방문안내</Btn></div>
+        </div>
       </div>
-      <div className="bk">
-        <span className="eb">예약 · 문의</span>
-        <a className="tel" href={`tel:${CLINIC.tel.replace(/-/g, "")}`}>{CLINIC.tel}</a>
-        <p>진료시간 내 전화 예약 · 검사 상담</p>
-        <div className="actions"><Btn href={`tel:${CLINIC.tel.replace(/-/g, "")}`}>전화 걸기</Btn><Btn href="/visit/" kind="w">진료·방문안내</Btn></div>
+      <div className="map">
+        <iframe title="오시는 길 지도" loading="lazy" src={`https://maps.google.com/maps?q=${encodeURIComponent(CLINIC.address)}&z=17&output=embed`} />
+        <a className="open" href={`https://map.naver.com/p/search/${encodeURIComponent(CLINIC.name)}`} target="_blank" rel="noopener">네이버 지도에서 보기 →</a>
       </div>
     </div>
   );
