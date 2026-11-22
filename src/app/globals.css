@@ -120,7 +120,8 @@ a.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); color: in
 .faq .a { padding: 0 4px 22px; font-size: 15.5px; line-height: 1.75; color: var(--ink2); }
 .review { font-size: 13px; color: var(--mute); }
 .tbl { overflow-x: auto; border-radius: 14px; border: 1px solid var(--line); }
-.tbl table { width: 100%; border-collapse: collapse; min-width: 600px; }
+.tbl table { width: 100%; border-collapse: collapse; min-width: 600px; table-layout: fixed; }
+.tbl th:first-child, .tbl td:first-child { width: 18%; }
 .tbl th { text-align: left; padding: 12px 14px; font-size: 14px; background: var(--brand); color: #fff; font-weight: 600; }
 .tbl td { padding: 12px 14px; font-size: 14px; color: var(--ink2); border-bottom: 1px solid var(--line); vertical-align: top; }
 .chips { display: flex; gap: 10px; flex-wrap: wrap; }
