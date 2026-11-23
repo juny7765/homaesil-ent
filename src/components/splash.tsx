@@ -14,8 +14,8 @@ export function IntroSplash() {
     } catch { /* storage 불가 시에도 1회 표시 */ }
     if (skip) { ready(); return; }
     setState("show");
-    const t1 = setTimeout(() => setState("out"), 3800);
-    const t2 = setTimeout(() => { setState("hidden"); setTimeout(ready, 200); }, 5500); // 인사말이 완전히 사라진 뒤 0.2초 후 타일 등장
+    const t1 = setTimeout(() => setState("out"), 5900);
+    const t2 = setTimeout(() => { setState("hidden"); setTimeout(ready, 200); }, 7100); // 인사말이 완전히 사라진 뒤 0.2초 후 타일 등장
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
   if (state === "hidden") return null;
