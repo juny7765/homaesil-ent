@@ -78,7 +78,7 @@ export function SubTemplate({ track, page, url, parent }: { track: TrackKey; pag
         <Grid cols={4}>{(d.info as [string, string][]).map(([a, b]) => <div className="info" key={a}><small>{a}</small><b>{b}</b></div>)}</Grid>
         <div className="box">준비사항 · {(d.prep as string[]).join(" · ")}</div></Section>}
       {kind === "A" && <Section alt={alt()}><H2>치료와 관리</H2>
-        <Grid cols={3}>{(d.treat as string[][]).map((x) => x.length > 2 ? <Card key={x[0]} title={x[0]} body={x[1]} href={href(x[2])} /> : <div className="plain" key={x[0]}><h3>{x[0]}</h3><p>{x[1]}</p></div>)}</Grid></Section>}
+        <Grid cols={3}>{(d.treat as (string | undefined)[][]).map((x) => <Card key={x[0]} title={x[0]!} body={x[1]!} href={x[2] ? href(x[2]) : undefined} img={x[3]} />)}</Grid></Section>}
       {kind === "C" && <><Section alt={alt()}><H2>{compareTitle(d.compare_h)}</H2><Table head={d.compare_h} rows={d.compare} /></Section><Section alt={alt()}><H2>치료 후 관리</H2><Check items={d.after} /></Section></>}
 
       <Section alt={alt()}><H2>진료하는 의료진</H2><Doctors track={track} slug={slug} /></Section>
