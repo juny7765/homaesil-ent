@@ -31,8 +31,18 @@ export function Card({ title, body, href, icon }: { title: string; body: string;
 }
 export const Grid = ({ cols, children }: { cols: 2 | 3 | 4; children: React.ReactNode }) => <div className={`grid g${cols}`}>{children}</div>;
 
-export function Steps({ items }: { items: [string, string][] }) {
-  return <ol className="steps">{items.map(([t, d], i) => <li className="step" key={i}><i>{i + 1}</i><b>{t}</b><p>{d}</p></li>)}</ol>;
+export function Steps({ items }: { items: (string | undefined)[][] }) {
+  const hasImg = items.some((it) => it[2]);
+  return (
+    <ol className={`steps${hasImg ? " imgsteps" : ""}`}>
+      {items.map(([t, d, img], i) => (
+        <li className="step" key={i}>
+          {img && <span className="stepimg"><img src={img} alt={t} width={1024} height={768} loading="lazy" /></span>}
+          <i>{i + 1}</i><b>{t}</b><p>{d}</p>
+        </li>
+      ))}
+    </ol>
+  );
 }
 export function Check({ items }: { items: string[] }) { return <ul className="check">{items.map((x) => <li key={x}>{x}</li>)}</ul>; }
 export function Faq({ items, reviewer }: { items: [string, string][]; reviewer?: string }) {
