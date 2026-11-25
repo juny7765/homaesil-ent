@@ -92,8 +92,11 @@ export function findPage(segments: string[]): PageEntry | undefined {
   return PAGES.find((p) => p.url === url);
 }
 export function doctorsFor(track: TrackKey, slug: string) {
-  const keys = [...TRACK_DOCS[track]];
-  if (PEDI.has(slug) && !keys.includes("kim")) keys.splice(1, 0, "kim");
+  let keys = [...TRACK_DOCS[track]];
+  if (PEDI.has(slug) && !keys.includes("kim")) keys.push("kim");
+  // 이유재 대표원장(lee)은 항상 첫 번째로 노출
+  keys = keys.filter((k) => k !== "lee");
+  keys.unshift("lee");
   return keys.map((k) => ({ key: k, ...DOCS[k as keyof typeof DOCS] }));
 }
 export const REVIEWER: Record<TrackKey, string> = {
