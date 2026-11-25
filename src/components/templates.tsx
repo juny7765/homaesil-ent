@@ -94,7 +94,7 @@ const INTRO_META: Record<TrackKey, [string, string]> = {
   sleep: ["코골이·무호흡 · 기면증 · 렘수면행동장애", "코를 골거나 자도 피곤한 분, 수면 전 다리 불편, 잠꼬대가 심한 분"],
   dizziness: ["이석증·메니에르·전정 질환 진료", "어지럼이 반복되거나 갑자기 심한 분"],
   growth: ["키 성장·성조숙증·소아비만 평가와 관리", "아이의 키·사춘기 속도가 걱정되는 보호자"],
-  ent: ["증상별 이비인후과 진료 안내", "귀·코·목 불편으로 진료를 찾는 분"],
+  ent: ["소아청소년과 이비인후과 진료", "귀·코·목 불편으로 진료를 찾는 분"],
 };
 /** 비교표 제목: "구분" 표는 선택지를 vs로, 항목형 표는 "○○별 비교" */
 function compareTitle(h: string[] = []) {
@@ -114,7 +114,7 @@ export function Intro() {
             <img src={`/img/tile_${k}.jpg`} alt={`${TRACKS[k].name} 진료 장면`} width={1536} height={1024} loading="eager" />
             <div className="veil" />
             <div className="t">
-              <span className="n">{TRACKS[k].url.replace(/\//g, "")} clinic</span>
+              <span className="n">{k === "ent" ? "Specialty Clinic" : `${TRACKS[k].url.replace(/\//g, "")} clinic`}</span>
               <h2>{TRACKS[k].name}</h2>
               <p>{INTRO_META[k][0]}</p>
               <span className="go">{TRACKS[k].short} 전용 메인 →</span>
