@@ -30,7 +30,7 @@ export function TrackMain({ k }: { k: TrackKey }) {
         {m.flow_note && <><div className="box">{m.flow_note}</div><div className="actions"><Btn href="/visit/">예약하기</Btn><Btn href={`tel:${CLINIC.tel.replace(/-/g, "")}`} kind="s">전화 문의하기</Btn></div></>}
       </Section>
       <Section alt><H2>{m.s4_t}</H2>
-        <Grid cols={Math.min(m.s4.length, 4) as 2 | 3 | 4}>{m.s4.map(([a, b, h]) => <Card key={a} title={a} body={b} href={href(h)} icon />)}</Grid>
+        <Grid cols={Math.min(m.s4.length, 4) as 2 | 3 | 4}>{m.s4.map(([a, b, h, im]) => <Card key={a} title={a} body={b} href={href(h)} icon img={im} />)}</Grid>
       </Section>
       <Section><H2>진료하는 의료진</H2><Doctors track={k} slug={k} /></Section>
       <Section alt><H2>{t.short} 진료 전 자주 묻는 질문</H2><Faq items={m.faq} reviewer={REVIEWER[k]} /></Section>

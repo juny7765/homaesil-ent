@@ -25,9 +25,10 @@ export function H2({ children, sub }: { children: React.ReactNode; sub?: string 
 }
 export const Eyebrow = ({ children }: { children: React.ReactNode }) => <span className="eyebrow">{children}</span>;
 
-export function Card({ title, body, href, icon }: { title: string; body: string; href?: string; icon?: boolean }) {
-  const inner = <>{icon && <Icon title={title} />}<h3>{title}</h3><p>{body}</p>{href && href !== "#" && <span className="more">자세히 보기 →</span>}</>;
-  return href && href !== "#" ? <Link className="card" href={href}>{inner}</Link> : <div className="card">{inner}</div>;
+export function Card({ title, body, href, icon, img }: { title: string; body: string; href?: string; icon?: boolean; img?: string }) {
+  const inner = <>{img ? <span className="cardimg"><img src={img} alt={title} width={1024} height={768} loading="lazy" /></span> : icon && <Icon title={title} />}<h3>{title}</h3><p>{body}</p>{href && href !== "#" && <span className="more">자세히 보기 →</span>}</>;
+  const cls = `card${img ? " hasimg" : ""}`;
+  return href && href !== "#" ? <Link className={cls} href={href}>{inner}</Link> : <div className={cls}>{inner}</div>;
 }
 export const Grid = ({ cols, children }: { cols: 2 | 3 | 4; children: React.ReactNode }) => <div className={`grid g${cols}`}>{children}</div>;
 
@@ -65,7 +66,7 @@ export function Doctors({ track, slug }: { track: TrackKey; slug: string }) {
     <div className="docs">
       {doctorsFor(track, slug).map((d) => (
         <div className="doc" key={d.key}>
-          <img src={`/img/doc_${d.key}.jpg`} alt={`${d.name} 프로필`} width={112} height={140} loading="lazy" />
+          <img src={`/img/doc_${d.key}.jpg`} alt={`${d.name} 프로필`} width={140} height={196} loading="lazy" />
           <div><b>{d.name}</b><div className="spec">{d.spec}</div><ul>{d.lines.slice(0, 2).map((l) => <li key={l}>{l}</li>)}</ul><Link className="lnk" href="/about/#doctors">의료진 소개와 진료 일정 →</Link></div>
         </div>
       ))}
