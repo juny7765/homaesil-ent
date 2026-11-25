@@ -11,7 +11,7 @@ export interface DetailGroup { name: string; href: string; pages: SubPage[] }
 export interface MainData {
   h1: string; sub: string; features?: [string, string][];
   chips_t: string; chips: [string, string, string][];
-  flow_t: string; flow: [string, string][]; flow_t_override?: string; flow_note?: string;
+  flow_t: string; flow: (string | undefined)[][]; flow_t_override?: string; flow_note?: string;
   s4_t: string; s4: [string, string, string][];
   doc: string; faq: [string, string][];
 }
