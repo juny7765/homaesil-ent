@@ -66,7 +66,7 @@ export function SubTemplate({ track, page, url, parent }: { track: TrackKey; pag
       </div></section>
 
       {(kind === "A" || kind === "D") && <Section alt={alt()}><H2 sub="2개 이상 해당하면 진료를 권합니다">{kind === "A" ? "이런 증상이 있다면 확인해 보세요" : "보호자가 확인할 신호"}</H2><Check items={d.check} /></Section>}
-      {kind === "H" && <Section alt={alt()}><H2>어떤 질환이 있나요?</H2><Grid cols={3}>{(d.hub as [string, string][]).map(([a, b]) => <Card key={a} title={a} body={b} href={hubHref(a)} icon />)}</Grid></Section>}
+      {kind === "H" && <Section alt={alt()}><H2>어떤 질환이 있나요?</H2><Grid cols={3}>{(d.hub as (string | undefined)[][]).map(([a, b, im]) => <Card key={a} title={a!} body={b!} href={hubHref(a!)} icon img={im} />)}</Grid></Section>}
       {kind === "A" && <Section alt={alt()}><H2>{d.cause_t}</H2><Grid cols={3}>{(d.cause as [string, string][]).map(([a, b]) => <div className="plain" key={a}><h3>{a}</h3><p>{b}</p></div>)}</Grid></Section>}
       {kind === "B" && <Section alt={alt()}><H2>어떤 경우에 받나요?</H2><Check items={d.when} /></Section>}
       {kind === "C" && <Section alt={alt()}><H2>누구에게 해당하나요?</H2><Check items={d.who} /></Section>}
