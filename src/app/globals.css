@@ -72,7 +72,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .hero.sub .txt { flex: 1 1 560px; }
 .hero.sub .pic { flex: 1 1 360px; }
 .hero.sub .pic img { height: 320px; border-radius: var(--r-photo); }
-.answer { padding: 22px 26px; border-radius: 16px; background: var(--soft); border-left: 4px solid var(--brand); font-size: 16px; line-height: 1.75; }
+.answer { padding: 22px 26px; border-radius: 16px; background: var(--soft); border-left: 4px solid var(--brand); font-size: 16px; line-height: 1.75; white-space: pre-line; }
 .actions { display: flex; gap: 10px; flex-wrap: wrap; }
 .poster { position: relative; display: block; overflow: hidden; }
 .poster img { height: 320px; }
