@@ -24,7 +24,7 @@ export function TrackMain({ k }: { k: TrackKey }) {
         </Section>
       )}
       <Section alt><H2>{m.chips_t}</H2>
-        <Grid cols={Math.min(m.chips.length, 4) as 2 | 3 | 4}>{m.chips.map(([a, b, h]) => <Card key={a} title={a} body={b} href={href(h)} icon />)}</Grid>
+        <Grid cols={Math.min(m.chips.length, 4) as 2 | 3 | 4}>{m.chips.map(([a, b, h, im]) => <Card key={a} title={a} body={b} href={href(h)} icon img={im} />)}</Grid>
       </Section>
       <Section id="flow"><H2>{m.flow_t_override ?? m.flow_t}</H2><Steps items={m.flow} />
         {m.flow_note && <><div className="box">{m.flow_note}</div><div className="actions"><Btn href="/visit/">예약하기</Btn><Btn href={`tel:${CLINIC.tel.replace(/-/g, "")}`} kind="s">전화 문의하기</Btn></div></>}

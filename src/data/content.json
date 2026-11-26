@@ -70,22 +70,26 @@
     [
      "코골이·수면무호흡",
      "자다 숨이 멎는다는 말을 들은 적이 있다",
-     "sleep-snoring.dc.html"
+     "sleep-snoring.dc.html",
+     "/img/sub_sleep-snoring.jpg"
     ],
     [
      "낮 졸림·기면증",
      "낮에 참을 수 없는 졸음 · 특발성 과수면증",
-     "sleep-narcolepsy.dc.html"
+     "sleep-narcolepsy.dc.html",
+     "/img/sub_sleep-narcolepsy.jpg"
     ],
     [
      "하지불안증후군·렘수면행동장애",
      "수면 전 다리가 불편하다 · 수면 중 잠꼬대·몸을 움직인다",
-     "sleep-rls.dc.html"
+     "sleep-rls.dc.html",
+     "/img/sub_sleep-rls.jpg"
     ],
     [
      "불면증",
      "잠들기 어렵거나 자주 깨는 문제가 반복된다",
-     "sleep-insomnia.dc.html"
+     "sleep-insomnia.dc.html",
+     "/img/sub_sleep-insomnia.jpg"
     ]
    ],
    "flow_t": "수면다원검사는 어떻게 진행되나요?",
@@ -155,17 +159,20 @@
     [
      "자세를 바꿀 때 핑 도는",
      "누웠다 일어날 때, 돌아누울 때 짧게 도는 어지럼",
-     "dizz-bppv.dc.html"
+     "dizz-bppv.dc.html",
+     "/img/sub_dizz-bppv.jpg"
     ],
     [
      "이명·난청이 함께 오는",
      "귀가 먹먹하고 소리가 울리며 수십 분 이상 지속",
-     "dizz-meniere.dc.html"
+     "dizz-meniere.dc.html",
+     "/img/sub_dizz-meniere.jpg"
     ],
     [
      "며칠째 계속되는",
      "갑자기 시작해 하루 이상 심하게 지속되는 어지럼",
-     "dizz-neuritis.dc.html"
+     "dizz-neuritis.dc.html",
+     "/img/sub_dizz-neuritis.jpg"
     ]
    ],
    "flow_t": "검사는 어떻게 진행되나요?",
@@ -241,22 +248,26 @@
     [
      "키 성장 부진",
      "또래 하위 3% 이하이거나 1년에 4cm 미만 자람",
-     "growth-height.dc.html"
+     "growth-height.dc.html",
+     "/img/sub_growth-height.jpg"
     ],
     [
      "성조숙증 의심",
      "여아 8세·남아 9세 이전 2차 성징 시작",
-     "growth-puberty.dc.html"
+     "growth-puberty.dc.html",
+     "/img/sub_growth-puberty.jpg"
     ],
     [
      "코골이·비염과 성장",
      "입호흡·코골이로 깊은 잠을 못 자는 아이",
-     "growth-sleep.dc.html"
+     "growth-sleep.dc.html",
+     "/img/sub_growth-sleep.jpg"
     ],
     [
      "소아비만",
      "표준체중 20% 초과 또는 BMI 백분위 95 이상",
-     "growth-obesity.dc.html"
+     "growth-obesity.dc.html",
+     "/img/sub_growth-obesity.jpg"
     ]
    ],
    "flow_t": "성장 평가는 어떻게 진행되나요?",
@@ -355,17 +366,20 @@
     [
      "귀",
      "중이염 · 외이도염 · 난청·이명 · 보청기",
-     "ent-ear.dc.html"
+     "ent-ear.dc.html",
+     "/img/sub_ent-ear.jpg"
     ],
     [
      "코",
      "알레르기비염 · 축농증 · 비중격만곡 · 코 수술",
-     "ent-nose.dc.html"
+     "ent-nose.dc.html",
+     "/img/sub_ent-nose.jpg"
     ],
     [
      "목",
      "편도·아데노이드 · 성대·음성 · 갑상선 · 구강 종물 · 삼킴장애",
-     "ent-throat.dc.html"
+     "ent-throat.dc.html",
+     "/img/sub_ent-throat.jpg"
     ]
    ],
    "flow_t": "진료는 어떻게 진행되나요?",
