@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { CLINIC, ORDER, TRACKS, TrackKey } from "@/lib/content";
 
-const COMMON = [["/about/", "병원소개"], ["/visit/", "진료·방문안내"], ["/health/", "건강정보"]] as const;
+const ABOUT_SUB = [["/about/", "병원소개"], ["/about/tour/", "둘러보기"], ["/about/equipment/", "장비소개"]] as const;
+const COMMON = [["/visit/", "진료·방문안내"], ["/health/", "건강정보"], ["/column/", "칼럼"]] as const;
+const ABOUT_PATHS: string[] = ["/about/", "/about/tour/", "/about/equipment/"];
 
 export function Header({ current }: { current?: TrackKey | string }) {
   return (
@@ -13,6 +15,10 @@ export function Header({ current }: { current?: TrackKey | string }) {
           {ORDER.map((k) => <Link key={k} href={TRACKS[k].url} className={current === k ? "on" : ""}>{TRACKS[k].name}</Link>)}
         </nav>
         <div className="util">
+          <div className="dd">
+            <Link href="/about/" className={typeof current === "string" && ABOUT_PATHS.includes(current) ? "on" : ""}>병원소개</Link>
+            <div className="ddm">{ABOUT_SUB.map(([h, t]) => <Link key={h} href={h} className={current === h ? "on" : ""}>{t}</Link>)}</div>
+          </div>
           {COMMON.map(([h, t]) => <Link key={h} href={h} className={current === h ? "on" : ""}>{t}</Link>)}
           <Link href="/visit/" className="btn p sm cta">예약·문의</Link>
         </div>
@@ -20,6 +26,9 @@ export function Header({ current }: { current?: TrackKey | string }) {
       </div>
       <nav className="mnav" aria-label="모바일 메뉴">
         {ORDER.map((k) => <Link key={k} href={TRACKS[k].url}>{TRACKS[k].name}</Link>)}
+        <Link href="/about/">병원소개</Link>
+        <Link href="/about/tour/" className="sub">· 둘러보기</Link>
+        <Link href="/about/equipment/" className="sub">· 장비소개</Link>
         {COMMON.map(([h, t]) => <Link key={h} href={h}>{t}</Link>)}
         <a href={`tel:${CLINIC.tel.replace(/-/g, "")}`}>전화 {CLINIC.tel}</a>
       </nav>
@@ -37,7 +46,7 @@ export function Footer() {
           대표원장 이유재
         </div>
         <div className="l">{ORDER.map((k) => <Link key={k} href={TRACKS[k].url}>{TRACKS[k].name}</Link>)}</div>
-        <div className="l">{COMMON.map(([h, t]) => <Link key={h} href={h}>{t}</Link>)}<Link href="/privacy/">개인정보처리방침</Link></div>
+        <div className="l">{[...ABOUT_SUB, ...COMMON].map(([h, t]) => <Link key={h} href={h}>{t}</Link>)}<Link href="/privacy/">개인정보처리방침</Link></div>
         <div className="c">© {new Date().getFullYear()} {CLINIC.name}. 이 사이트의 의학 정보는 진료를 대신하지 않으며, 증상이 있으면 의료진 진료를 받으시기 바랍니다.</div>
       </div>
     </footer>

@@ -143,6 +143,15 @@ a.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); color: in
 .box { padding: 20px 24px; border-radius: 16px; background: var(--soft); font-size: 14.5px; line-height: 1.7; }
 .notice { padding: 20px 24px; border-radius: 16px; background: #fbeded; border: 1.5px solid #c84b4b; font-size: 14.5px; line-height: 1.7; color: #5a1212; }
 
+/* about dropdown nav */
+.util .dd { position: relative; display: flex; align-items: center; }
+.util .dd > a::after { content: "▾"; font-size: 10px; margin-left: 4px; opacity: .55; }
+.util .ddm { position: absolute; top: 100%; left: -10px; display: none; flex-direction: column; min-width: 150px; padding: 8px; margin-top: 2px; background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 12px 34px rgba(16,32,64,.12); z-index: 70; }
+.util .dd:hover .ddm, .util .dd:focus-within .ddm { display: flex; }
+.util .ddm a { padding: 9px 12px; border-radius: 9px; font-size: 14px; white-space: nowrap; }
+.util .ddm a:hover { background: var(--soft); }
+.mnav a.sub { padding-left: 24px; font-size: 14px; color: var(--mute); }
+
 /* doctors */
 .docs { display: flex; gap: 16px; flex-wrap: wrap; }
 .doc { flex: 1 1 380px; display: flex; gap: 18px; padding: 22px; border-radius: var(--r-card); background: #fff; border: 1px solid var(--line); }
@@ -202,7 +211,7 @@ a.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); color: in
 .intro-page .ftr { margin-top: 0; }
 
 /* 병원소개 의료진 — 사진 좌측 전체 높이, 우측 소개+일정 */
-.docs2 { display: flex; flex-direction: column; gap: 20px; }
+.docs2 { display: flex; flex-direction: column; gap: 40px; }
 .doc2 { display: flex; gap: 28px; padding: 28px; border-radius: var(--r-card); background: #fff; border: 1px solid var(--line); align-items: stretch; }
 .doc2 img { width: 240px; height: auto; min-height: 300px; align-self: stretch; border-radius: 16px; object-fit: cover; object-position: center top; flex: none; }
 .doc2 .body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }

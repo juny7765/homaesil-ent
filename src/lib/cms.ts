@@ -18,4 +18,4 @@ async function fetchTable<T>(table: string, order: string): Promise<T[] | null> 
 export async function getPosts(): Promise<Post[]> { return (await fetchTable<Post>("health_posts", "published_at")) ?? (seed.posts as Post[]); }
 export async function getNotices(): Promise<Notice[]> { return (await fetchTable<Notice>("notices", "published_at")) ?? (seed.notices as Notice[]); }
 export async function getPress(): Promise<Press[]> { return (await fetchTable<Press>("press", "published_at")) ?? (seed.press as Press[]); }
-export const TRACK_LABEL: Record<string, string> = { sleep: "수면", dizziness: "어지럼증", growth: "성장", ent: "귀·코·목", notice: "병원 공지" };
+export const TRACK_LABEL: Record<string, string> = { sleep: "수면", dizziness: "어지럼증", growth: "성장", ent: "귀·코·목", column: "칼럼", notice: "병원 공지" };

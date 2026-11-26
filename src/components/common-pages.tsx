@@ -48,9 +48,11 @@ export async function About() {
           {[["검사로 원인을 확인합니다", "수면다원검사·평형 검사·청력 검사·성장판 검사 등 객관적 검사 결과를 바탕으로 진료 방향을 정합니다."], ["결과를 설명하고 함께 결정합니다", "치료를 온라인이나 전화로 확정하지 않고, 결과 설명 뒤 환자·보호자와 선택지를 함께 검토합니다."], ["두 과가 연계해 진료합니다", "이비인후과 전문의 2인과 소아청소년과 전문의 1인이 코골이·성장·소아 질환을 한 병원 안에서 연계합니다."]].map(([a, b]) => <div className="plain" key={a}><h3>{a}</h3><p>{b}</p></div>)}
         </Grid>
       </Section>
-      <Section alt><H2 sub="현 사이트 둘러보기 사진 재사용 예정">병원 공간과 실제 장비</H2>
-        <Grid cols={4}>{["내부 전경", "진료실 · 내시경", "검사실 · 청력 부스", "검사실 · X-ray", "수술실", "수면센터 · 1인 검사실", "수면센터 · 판독실", "수면센터 · 양압기"].map((x) => <div className="plain" key={x} style={{ minHeight: 160, display: "flex", alignItems: "flex-end", background: "var(--soft)", border: 0 }}><p style={{ color: "var(--mute)" }}>{x} 사진</p></div>)}</Grid>
-        <Table head={["구분", "장비·시설", "사용 진료"]} rows={EQUIP} />
+      <Section alt><H2>병원 공간과 장비</H2>
+        <Grid cols={2}>
+          <Card title="병원 둘러보기" body="내부 전경·진료실·검사실·수술실·수면센터 등 환자분이 이용하시는 공간을 사진으로 안내합니다." href="/about/tour/" />
+          <Card title="장비 소개" body="수면다원검사·내시경·초음파·골연령 판독 등 정확한 진단을 위한 장비와 시설을 진료별로 소개합니다." href="/about/equipment/" />
+        </Grid>
       </Section>
       <Section><H2>관심 진료 메인으로 이동</H2><TrackCards /></Section>
       <Section alt><H2>진료시간과 방문 안내</H2><Visit /></Section>
@@ -90,6 +92,61 @@ export function VisitPage() {
   );
 }
 
+export function Tour() {
+  const tiles = ["내부 전경", "진료실 · 내시경", "검사실 · 청력 부스", "검사실 · X-ray", "수술실", "수면센터 · 1인 검사실", "수면센터 · 판독실", "수면센터 · 양압기"];
+  return (
+    <>
+      <section className="hero sub"><div className="wrap" style={{ flexDirection: "column", alignItems: "flex-start", gap: 16 }}>
+        <nav className="crumb" aria-label="현재 위치"><Link href="/">홈</Link><span>›</span><Link href="/about/">병원소개</Link><span>›</span><b>둘러보기</b></nav>
+        <Eyebrow>병원소개</Eyebrow><h1 className="h1 sm">병원 둘러보기</h1>
+        <div className="answer" style={{ maxWidth: 820 }}>내부 전경부터 진료실·검사실·수술실, 그리고 수면센터까지 환자분이 이용하시는 공간을 사진으로 안내합니다.</div>
+      </div></section>
+      <Section><Grid cols={4}>{tiles.map((x) => <div className="plain" key={x} style={{ minHeight: 180, display: "flex", alignItems: "flex-end", background: "var(--soft)", border: 0 }}><p style={{ color: "var(--mute)" }}>{x} 사진</p></div>)}</Grid></Section>
+      <Section alt><H2>장비도 함께 확인해 보세요</H2>
+        <p className="lead">진료별 장비·시설이 궁금하시면 장비 소개 페이지에서 확인하실 수 있습니다.</p>
+        <div className="actions"><Btn href="/about/equipment/">장비 소개 보기</Btn><Btn href="/visit/" kind="s">진료·방문안내</Btn></div>
+      </Section>
+    </>
+  );
+}
+
+export function Equipment() {
+  return (
+    <>
+      <section className="hero sub"><div className="wrap" style={{ flexDirection: "column", alignItems: "flex-start", gap: 16 }}>
+        <nav className="crumb" aria-label="현재 위치"><Link href="/">홈</Link><span>›</span><Link href="/about/">병원소개</Link><span>›</span><b>장비소개</b></nav>
+        <Eyebrow>병원소개</Eyebrow><h1 className="h1 sm">장비 소개</h1>
+        <div className="answer" style={{ maxWidth: 820 }}>수면다원검사·내시경·초음파·AI 골연령 판독 등 정확한 진단과 치료를 위한 장비와 시설을 진료별로 소개합니다.</div>
+      </div></section>
+      <Section><Grid cols={2}>{EQUIP.map(([cat, items, use]) => <div className="plain" key={cat}><h3>{cat}</h3><p>{items}</p><small style={{ color: "var(--mute)", display: "block", marginTop: 8 }}>사용 진료 · {use}</small></div>)}</Grid></Section>
+      <Section alt><H2>장비·시설 한눈에 보기</H2><Table head={["구분", "장비·시설", "사용 진료"]} rows={EQUIP} /></Section>
+      <Section><H2>병원 공간이 궁금하신가요?</H2>
+        <p className="lead">진료실·검사실·수면센터 등 병원 공간은 둘러보기 페이지에서 보실 수 있습니다.</p>
+        <div className="actions"><Btn href="/about/tour/">병원 둘러보기</Btn></div>
+      </Section>
+    </>
+  );
+}
+
+export async function Column() {
+  const posts = await getPosts();
+  const cols = posts.filter((p) => p.track === "column");
+  return (
+    <>
+      <section className="hero" style={{ background: "var(--tint)" }}><div className="wrap">
+        <div className="txt"><Eyebrow>칼럼</Eyebrow><h1 className="h1" style={{ fontSize: 40 }}>의료진이 전하는 건강 칼럼</h1>
+          <p className="lead">자주 묻는 질문을 넘어, 증상과 질환을 조금 더 깊이 있게 풀어 전하는 의료진 칼럼입니다. 모든 내용은 의료진 검토 후 공개합니다.</p></div>
+        <div className="pic"><img src="/img/hero_health.jpg" alt="의료진이 건강 칼럼을 검토하는 장면" width={1536} height={1024} fetchPriority="high" /></div>
+      </div></section>
+      <Section>{cols.length
+        ? <Grid cols={3}>{cols.map((p) => <Link className="q" key={p.slug} href={`/health/${p.slug}/`}><span className="tag">칼럼</span><h3>{p.title}</h3><small>의료진 검토 {p.reviewer} · {p.published_at}</small></Link>)}</Grid>
+        : <p className="lead">칼럼을 준비 중입니다. 곧 의료진이 작성한 건강 칼럼을 만나보실 수 있습니다.</p>}
+      </Section>
+      <Section alt><H2>관련 진료로 이동</H2><TrackCards /></Section>
+    </>
+  );
+}
+
 export async function Health() {
   const [posts, notices] = await Promise.all([getPosts(), getNotices()]);
   return (
@@ -97,7 +154,7 @@ export async function Health() {
       <section className="hero" style={{ background: "var(--tint)" }}><div className="wrap">
         <div className="txt"><Eyebrow>건강정보</Eyebrow><h1 className="h1" style={{ fontSize: 40 }}>환자가 자주 묻는 질문에 의료진이 답합니다</h1>
           <p className="lead">수면·어지럼증·성장·귀코목 네 분야의 질문형 콘텐츠와 병원 공지를 한곳에 모았습니다. 모든 의학 내용은 의료진 검토 후 공개합니다.</p>
-          <div className="tabs">{Object.entries(TRACK_LABEL).map(([k, v]) => <a className="tab" key={k} href={`#${k}`}>{v}</a>)}</div></div>
+          <div className="tabs">{Object.entries(TRACK_LABEL).filter(([k]) => k !== "column").map(([k, v]) => <a className="tab" key={k} href={`#${k}`}>{v}</a>)}</div></div>
         <div className="pic"><img src="/img/hero_health.jpg" alt="의료진이 건강정보를 검토하는 장면" width={1536} height={1024} fetchPriority="high" /></div>
       </div></section>
       {(["sleep", "dizziness", "growth", "ent"] as const).map((k, i) => {

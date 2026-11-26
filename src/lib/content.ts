@@ -44,7 +44,7 @@ export type PageEntry =
   | { type: "intro"; url: "/" ; title: string }
   | { type: "main"; url: string; track: TrackKey; title: string }
   | { type: "sub"; url: string; track: TrackKey; page: SubPage; parent?: { name: string; href: string }; title: string }
-  | { type: "about" | "visit" | "health"; url: string; title: string };
+  | { type: "about" | "visit" | "health" | "tour" | "equipment" | "column"; url: string; title: string };
 
 function subUrl(track: TrackKey, slug: string, urlpath?: string) {
   const base = TRACKS[track].url;
@@ -74,7 +74,8 @@ for (const g of ["ear", "nose", "throat"] as const) {
     PAGES.push({ type: "sub", url, track: "ent", page: p, parent: { name: grp.name, href: href(grp.href) }, title: p.title });
   }
 }
-PAGES.push({ type: "about", url: "/about/", title: "병원소개" }, { type: "visit", url: "/visit/", title: "진료 및 방문안내" }, { type: "health", url: "/health/", title: "건강정보" });
+PAGES.push({ type: "about", url: "/about/", title: "병원소개" }, { type: "visit", url: "/visit/", title: "진료 및 방문안내" }, { type: "health", url: "/health/", title: "건강정보" }, { type: "tour", url: "/about/tour/", title: "둘러보기" }, { type: "equipment", url: "/about/equipment/", title: "장비소개" }, { type: "column", url: "/column/", title: "칼럼" });
+DC["tour.dc.html"] = "/about/tour/"; DC["equipment.dc.html"] = "/about/equipment/"; DC["column.dc.html"] = "/column/";
 
 /** 와이어프레임 링크(.dc.html, #anchor) → 사이트 href */
 export function href(h: string): string {

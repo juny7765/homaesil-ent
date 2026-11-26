@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Header, Footer } from "@/components/chrome";
 import { Intro, SubTemplate, TrackMain } from "@/components/templates";
-import { About, Health, VisitPage } from "@/components/common-pages";
+import { About, Column, Equipment, Health, Tour, VisitPage } from "@/components/common-pages";
 import { JsonLd } from "@/components/jsonld";
 import { PAGES, findPage, MAIN } from "@/lib/content";
 import { clinicLd, faqLd, pageMeta, webPageLd } from "@/lib/seo";
@@ -20,7 +20,8 @@ function ogImage(p: ReturnType<typeof findPage>) {
   if (!p) return "/img/hero_about.jpg";
   if (p.type === "main") return `/img/hero_${p.track}.jpg`;
   if (p.type === "sub") return `/img/sub_${p.page.slug}.jpg`;
-  if (p.type === "intro") return "/img/hero_about.jpg";
+  if (p.type === "intro" || p.type === "tour" || p.type === "equipment") return "/img/hero_about.jpg";
+  if (p.type === "column") return "/img/hero_health.jpg";
   return `/img/hero_${p.type}.jpg`;
 }
 
@@ -43,6 +44,9 @@ export default async function Page({ params }: { params: Promise<{ path?: string
         {p.type === "main" && <TrackMain k={p.track} />}
         {p.type === "sub" && <SubTemplate track={p.track} page={p.page} url={p.url} parent={p.parent} />}
         {p.type === "about" && <About />}
+        {p.type === "tour" && <Tour />}
+        {p.type === "equipment" && <Equipment />}
+        {p.type === "column" && <Column />}
         {p.type === "visit" && <VisitPage />}
         {p.type === "health" && <Health />}
       </main>
