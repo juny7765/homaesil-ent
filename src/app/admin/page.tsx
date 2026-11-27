@@ -7,7 +7,7 @@ const KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
 const DEPLOY_HOOK = process.env.NEXT_PUBLIC_DEPLOY_HOOK ?? "";
 
 type Tab = "health_posts" | "notices" | "press";
-const TABS: { key: Tab; label: string }[] = [{ key: "health_posts", label: "건강정보" }, { key: "notices", label: "병원 공지" }, { key: "press", label: "언론보도" }];
+const TABS: { key: Tab; label: string }[] = [{ key: "health_posts", label: "건강정보" }, { key: "notices", label: "공지사항" }, { key: "press", label: "언론보도" }];
 const EMPTY: Record<Tab, Record<string, any>> = {
   health_posts: { slug: "", track: "sleep", title: "", summary: "", body: "", reviewer: "", link: "", published: false, published_at: new Date().toISOString().slice(0, 10) },
   notices: { category: "진료", title: "", body: "", published: true, published_at: new Date().toISOString().slice(0, 10) },

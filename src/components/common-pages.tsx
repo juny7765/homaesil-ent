@@ -223,8 +223,8 @@ export async function Health() {
     <>
       <section className="hero" style={{ background: "var(--tint)" }}><div className="wrap">
         <div className="txt"><Eyebrow>건강정보</Eyebrow><h1 className="h1" style={{ fontSize: 40 }}>환자가 자주 묻는 질문에 의료진이 답합니다</h1>
-          <p className="lead">수면·어지럼증·성장·코·귀·목 여섯 분야의 질문형 콘텐츠와 병원 공지를 한곳에 모았습니다. 모든 의학 내용은 의료진 검토 후 공개합니다.</p>
-          <div className="tabs">{HEALTH_ORDER.map((k) => <a className="tab" key={k} href={`#${k}`}>{TRACK_LABEL[k]}</a>)}<a className="tab" href="#notice">병원 공지</a></div></div>
+          <p className="lead">수면·어지럼증·성장·코·귀·목 여섯 분야의 질문형 콘텐츠와 공지사항을 한곳에 모았습니다. 모든 의학 내용은 의료진 검토 후 공개합니다.</p>
+          <div className="tabs">{HEALTH_ORDER.map((k) => <a className="tab" key={k} href={`#${k}`}>{TRACK_LABEL[k]}</a>)}<a className="tab" href="#notice">공지사항</a></div></div>
         <div className="pic"><img src="/img/hero_health.jpg" alt="의료진이 건강정보를 검토하는 장면" width={1536} height={1024} fetchPriority="high" /></div>
       </div></section>
       {HEALTH_ORDER.map((k, i) => {
@@ -232,7 +232,7 @@ export async function Health() {
         return <Section key={k} id={k} alt={i % 2 === 1}><H2>{TRACK_LABEL[k]} 건강정보</H2>
           <Grid cols={4}>{list.map((p) => <Link className="q" key={p.slug} href={`/health/${p.slug}/`}><span className="tag">{TRACK_LABEL[p.track]}</span><h3>Q. {p.title}</h3></Link>)}</Grid></Section>;
       })}
-      <Section id="notice"><H2>병원 공지</H2><Table head={["날짜", "구분", "제목"]} rows={notices.map((n) => [n.published_at, n.category, n.title])} /></Section>
+      <Section id="notice"><H2>공지사항</H2><Table head={["날짜", "구분", "제목"]} rows={notices.map((n) => [n.published_at, n.category, n.title])} /></Section>
       <Section alt><H2>관련 진료로 이동</H2><TrackCards /></Section>
     </>
   );
