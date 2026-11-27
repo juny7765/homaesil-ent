@@ -15,5 +15,5 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params; const post = (await getPosts()).find((p) => p.slug === slug); if (!post) notFound();
   const ld = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: post.title, acceptedAnswer: { "@type": "Answer", text: post.summary } }] };
-  return (<><Header current="/health/" /><main><JsonLd data={ld} /><PostPage post={post} /></main><Footer /></>);
+  return (<><Header current="/health/" /><main><JsonLd data={ld} /><PostPage post={post} /></main><Footer review={`${post.reviewer} · ${post.published_at}`} /></>);
 }

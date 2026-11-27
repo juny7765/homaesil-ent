@@ -50,7 +50,6 @@ export function Faq({ items, reviewer }: { items: [string, string][]; reviewer?:
   return (
     <>
       <div className="faq">{items.map(([q, a], i) => <details key={i} {...(i === 0 ? { open: true } : {})}><summary>Q. {q}</summary><div className="a">{a}</div></details>)}</div>
-      {reviewer && <p className="review">의학 정보 검토 {reviewer} · 검토일 2026.11</p>}
     </>
   );
 }

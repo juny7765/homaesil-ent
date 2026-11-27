@@ -4,7 +4,7 @@ import { Header, Footer } from "@/components/chrome";
 import { Intro, SubTemplate, TrackMain } from "@/components/templates";
 import { About, Column, Equipment, Health, Location, Tour, VisitPage } from "@/components/common-pages";
 import { JsonLd } from "@/components/jsonld";
-import { PAGES, findPage, MAIN } from "@/lib/content";
+import { PAGES, findPage, MAIN, REVIEWER } from "@/lib/content";
 import { clinicLd, faqLd, pageMeta, webPageLd } from "@/lib/seo";
 
 export const dynamicParams = false;
@@ -51,7 +51,7 @@ export default async function Page({ params }: { params: Promise<{ path?: string
         {p.type === "visit" && <VisitPage />}
         {p.type === "health" && <Health />}
       </main>
-      <Footer />
+      <Footer review={p.type === "main" || p.type === "sub" ? `${REVIEWER[p.track]} · 검토일 2026.11` : undefined} />
     </div>
   );
 }

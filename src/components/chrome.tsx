@@ -36,7 +36,7 @@ export function Header({ current }: { current?: TrackKey | string }) {
   );
 }
 
-export function Footer() {
+export function Footer({ review }: { review?: string }) {
   return (
     <footer className="ftr">
       <div className="wrap">
@@ -47,7 +47,7 @@ export function Footer() {
         </div>
         <div className="l">{ORDER.map((k) => <Link key={k} href={TRACKS[k].url}>{TRACKS[k].name}</Link>)}</div>
         <div className="l">{[...ABOUT_SUB, ...COMMON].map(([h, t]) => <Link key={h} href={h}>{t}</Link>)}<Link href="/privacy/">개인정보처리방침</Link></div>
-        <div className="c">© {new Date().getFullYear()} {CLINIC.name}. 이 사이트의 의학 정보는 진료를 대신하지 않으며, 증상이 있으면 의료진 진료를 받으시기 바랍니다.</div>
+        <div className="c">{review && <span className="rv">의학 정보 검토 {review}</span>}© {new Date().getFullYear()} {CLINIC.name}. 이 사이트의 의학 정보는 진료를 대신하지 않으며, 증상이 있으면 의료진 진료를 받으시기 바랍니다.</div>
       </div>
     </footer>
   );

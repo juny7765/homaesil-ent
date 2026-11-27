@@ -246,7 +246,6 @@ export function PostPage({ post }: { post: Awaited<ReturnType<typeof getPosts>>[
         <Eyebrow>{TRACK_LABEL[post.track]} 건강정보</Eyebrow>
         <h1 className="h1 sm">Q. {post.title}</h1>
         <div className="answer" style={{ maxWidth: 820 }}>{post.summary}</div>
-        <p className="review">의학 정보 검토 {post.reviewer} · {post.published_at}</p>
       </div></section>
       <Section><div className="prose" dangerouslySetInnerHTML={{ __html: post.body }} />
         {post.link && <div className="actions"><Btn href={post.link}>관련 진료 페이지 보기</Btn><Btn href="/visit/" kind="s">진료 예약·문의</Btn></div>}

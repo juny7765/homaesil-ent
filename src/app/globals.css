@@ -322,3 +322,4 @@ a.press-card:hover .press-img img { transform: scale(1.04); }
 .loc-way dd { margin: 0; font-size: 15px; color: var(--ink2); line-height: 1.65; }
 @media (max-width: 1024px) { .loc { grid-template-columns: 1fr; gap: 32px; } .loc-ways { grid-template-columns: 1fr; margin-top: 36px; } }
 @media (max-width: 640px) { .loc-map iframe { aspect-ratio: 4 / 3; } .loc-info h2 { font-size: 24px; margin-bottom: 20px; } .loc-tel { font-size: 34px; } .loc-way { padding: 22px 20px; } .loc-way dl > div { grid-template-columns: 84px 1fr; } }
+.ftr .c .rv { display: block; margin-bottom: 8px; font-size: 13px; color: rgba(255,255,255,.8); }
