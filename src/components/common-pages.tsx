@@ -110,6 +110,76 @@ export function Tour() {
   );
 }
 
+const LOC = {
+  mapQ: "권선구 호매실로 104번길 24-43 중앙 파크뷰",
+  kakao: "https://place.map.kakao.com/1386623615",
+  naver: "https://map.naver.com/p/search/" + encodeURIComponent("호매실연세이비인후과"),
+  car: [
+    ["내비게이션 검색", "‘호매실연세이비인후과’ 또는 ‘호매실중앙파크뷰’로 검색하세요."],
+    ["주소", "경기도 수원시 권선구 호매실로 104번길 24-43 중앙 파크뷰 A동 4층"],
+    ["주차", "중앙 파크뷰 건물 주차장을 이용하시고, 접수하실 때 차량 번호를 알려 주세요."],
+  ] as [string, string][],
+  transit: [
+    ["지하철", "수인분당선 오목천역·고색역에서 호매실 방면 버스로 환승합니다."],
+    ["도착 후", "중앙 파크뷰 A동 엘리베이터로 4층에 올라오시면 됩니다."],
+  ] as [string, string][],
+  /* 버스: [정류장 이름, 병원까지 도보, 노선 번호] — 병원 확인 후 입력 */
+  bus: [] as [string, string, string][],
+};
+const PinIco = () => <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" /></svg>;
+const MailIco = () => <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 8 8.5-6h-17L12 13z" /></svg>;
+const TelIco = () => <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .6 3.6 1 1 0 0 1-.25 1L6.6 10.8z" /></svg>;
+
+export function Location() {
+  const tel = `tel:${CLINIC.tel.replace(/-/g, "")}`;
+  const short = CLINIC.address.replace("경기도 수원시 ", "");
+  return (
+    <>
+      <section className="hero sub"><div className="wrap" style={{ flexDirection: "column", alignItems: "flex-start", gap: 16 }}>
+        <nav className="crumb" aria-label="현재 위치"><Link href="/">홈</Link><span>›</span><Link href="/about/">병원소개</Link><span>›</span><b>오시는길</b></nav>
+        <Eyebrow>병원소개</Eyebrow><h1 className="h1 sm">오시는 길</h1>
+        <div className="answer" style={{ maxWidth: 820 }}>{CLINIC.name}는 수원시 권선구 호매실로 104번길 24-43 중앙 파크뷰 A동 4층에 있습니다. 자가용과 대중교통으로 오시는 방법을 안내합니다.</div>
+      </div></section>
+      <Section>
+        <div className="loc">
+          <div className="loc-map"><iframe title={`${CLINIC.name} 위치 지도`} loading="lazy" src={`https://maps.google.com/maps?q=${encodeURIComponent(LOC.mapQ)}&t=m&z=16&output=embed&iwloc=near`} /></div>
+          <div className="loc-info">
+            <h2>{CLINIC.name}</h2>
+            <ul>
+              <li><PinIco /><span>{short}</span></li>
+              <li><MailIco /><a href={`mailto:${CLINIC.email}`}>{CLINIC.email}</a></li>
+              <li><TelIco /><a href={tel}>{CLINIC.tel}</a></li>
+            </ul>
+            <p className="loc-ask">언제든지 문의 주세요!</p>
+            <a className="loc-tel" href={tel}>{CLINIC.tel}</a>
+            <div className="actions"><Btn href={LOC.naver}>네이버 지도 길찾기</Btn><Btn href={LOC.kakao} kind="s">카카오맵 길찾기</Btn></div>
+          </div>
+        </div>
+        <div className="loc-ways">
+          <div className="loc-way">
+            <h3><span className="loc-badge">자가용</span>자가용으로 오실 때</h3>
+            <dl>{LOC.car.map(([a, b]) => <div key={a}><dt>{a}</dt><dd>{b}</dd></div>)}</dl>
+          </div>
+          <div className="loc-way">
+            <h3><span className="loc-badge">대중교통</span>대중교통으로 오실 때</h3>
+            <dl>
+              {LOC.transit.slice(0, 1).map(([a, b]) => <div key={a}><dt>{a}</dt><dd>{b}</dd></div>)}
+              {LOC.bus.length > 0
+                ? LOC.bus.map(([stop, walk, nums]) => <div key={stop}><dt>버스</dt><dd><b>{stop}</b> 정류장 하차 · {walk}<br />{nums}</dd></div>)
+                : <div><dt>버스</dt><dd>출발지에 따라 노선이 다릅니다. 위 지도 길찾기에서 출발지를 넣으면 타실 버스와 내리실 정류장을 바로 확인하실 수 있습니다.</dd></div>}
+              {LOC.transit.slice(1).map(([a, b]) => <div key={a}><dt>{a}</dt><dd>{b}</dd></div>)}
+            </dl>
+          </div>
+        </div>
+      </Section>
+      <Section alt><H2>진료시간도 함께 확인하세요</H2>
+        <p className="lead">진료시간·예약 방법·방문 전 준비 사항은 진료·방문안내에서 보실 수 있습니다.</p>
+        <div className="actions"><Btn href="/visit/">진료·방문안내</Btn><Btn href="/about/tour/" kind="s">병원 둘러보기</Btn></div>
+      </Section>
+    </>
+  );
+}
+
 export function Equipment() {
   return (
     <>

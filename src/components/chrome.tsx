@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { CLINIC, ORDER, TRACKS, TrackKey } from "@/lib/content";
 
-const ABOUT_SUB = [["/about/", "병원소개"], ["/about/tour/", "둘러보기"], ["/about/equipment/", "장비소개"]] as const;
+const ABOUT_SUB = [["/about/", "병원소개"], ["/about/tour/", "둘러보기"], ["/about/location/", "오시는길"]] as const;
 const COMMON = [["/visit/", "진료·방문안내"], ["/health/", "건강정보"], ["/column/", "칼럼"]] as const;
-const ABOUT_PATHS: string[] = ["/about/", "/about/tour/", "/about/equipment/"];
+const ABOUT_PATHS: string[] = ["/about/", "/about/tour/", "/about/location/", "/about/equipment/"];
 
 export function Header({ current }: { current?: TrackKey | string }) {
   return (
@@ -28,7 +28,7 @@ export function Header({ current }: { current?: TrackKey | string }) {
         {ORDER.map((k) => <Link key={k} href={TRACKS[k].url}>{TRACKS[k].name}</Link>)}
         <Link href="/about/">병원소개</Link>
         <Link href="/about/tour/" className="sub">· 둘러보기</Link>
-        <Link href="/about/equipment/" className="sub">· 장비소개</Link>
+        <Link href="/about/location/" className="sub">· 오시는길</Link>
         {COMMON.map(([h, t]) => <Link key={h} href={h}>{t}</Link>)}
         <a href={`tel:${CLINIC.tel.replace(/-/g, "")}`}>전화 {CLINIC.tel}</a>
       </nav>

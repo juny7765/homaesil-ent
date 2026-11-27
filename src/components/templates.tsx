@@ -3,6 +3,10 @@ import { IntroSplash } from "./splash";
 import { MAIN, TRACKS, TrackKey, SubPage, href, hubHref, REVIEWER, CLINIC, ORDER } from "@/lib/content";
 import { PressRail } from "./press-rail";
 import PRESS from "@/data/press.json";
+import fs from "node:fs";
+import path from "node:path";
+/* 언론보도는 기사 사진이 모두 준비된 뒤에만 노출 */
+const PRESS_READY = PRESS.every((p) => fs.existsSync(path.join(process.cwd(), "public", p.img)));
 import { Btn, BookBtn, Card, Check, Chips, Crumb, Doctors, Eyebrow, Faq, Grid, H2, Section, Steps, Table, Visit, Icon } from "./ui";
 
 /* ---------- 전용 메인 ---------- */
@@ -35,14 +39,14 @@ export function TrackMain({ k }: { k: TrackKey }) {
         <Grid cols={Math.min(m.s4.length, 4) as 2 | 3 | 4}>{m.s4.map(([a, b, h, im]) => <Card key={a} title={a} body={b} href={href(h)} icon img={im} />)}</Grid>
       </Section>
       <Section><H2>진료하는 의료진</H2><Doctors track={k} slug={k} /></Section>
-      {k === "sleep" && PRESS.length > 0 && (
+      {k === "sleep" && PRESS_READY && (
         <Section alt id="press"><H2>언론보도</H2>
           <p className="lead">언론에 소개된 호매실연세이비인후과의 수면 진료 이야기입니다.</p>
           <PressRail items={PRESS} />
         </Section>
       )}
-      <Section alt={k !== "sleep"}><H2>{t.short} 진료 전 자주 묻는 질문</H2><Faq items={m.faq} reviewer={REVIEWER[k]} /></Section>
-      <Section alt={k === "sleep"}><H2>진료시간과 방문 안내</H2><Visit /></Section>
+      <Section alt={!(k === "sleep" && PRESS_READY)}><H2>{t.short} 진료 전 자주 묻는 질문</H2><Faq items={m.faq} reviewer={REVIEWER[k]} /></Section>
+      <Section alt={k === "sleep" && PRESS_READY}><H2>진료시간과 방문 안내</H2><Visit /></Section>
     </>
   );
 }
