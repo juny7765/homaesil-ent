@@ -18,4 +18,8 @@ async function fetchTable<T>(table: string, order: string): Promise<T[] | null> 
 export async function getPosts(): Promise<Post[]> { return (await fetchTable<Post>("health_posts", "published_at")) ?? (seed.posts as Post[]); }
 export async function getNotices(): Promise<Notice[]> { return (await fetchTable<Notice>("notices", "published_at")) ?? (seed.notices as Notice[]); }
 export async function getPress(): Promise<Press[]> { return (await fetchTable<Press>("press", "published_at")) ?? (seed.press as Press[]); }
-export const TRACK_LABEL: Record<string, string> = { sleep: "수면", dizziness: "어지럼증", growth: "성장", ent: "귀·코·목", column: "칼럼", notice: "병원 공지" };
+export const TRACK_LABEL: Record<string, string> = { sleep: "수면", dizziness: "어지럼증", growth: "성장", nose: "코", ear: "귀", throat: "목", ent: "귀·코·목", column: "칼럼", notice: "병원 공지" };
+// 건강정보 분류 순서(6개 영역)
+export const HEALTH_ORDER = ["sleep", "dizziness", "growth", "nose", "ear", "throat"] as const;
+// 건강정보 분류 → 관련 진료 메인 링크
+export const HEALTH_LINK: Record<string, string> = { sleep: "/sleep/", dizziness: "/dizziness/", growth: "/growth/", nose: "/ent/", ear: "/ent/", throat: "/ent/" };

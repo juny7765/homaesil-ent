@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CLINIC, DOCS } from "@/lib/content";
-import { getNotices, getPosts, getPress, TRACK_LABEL } from "@/lib/cms";
+import { getNotices, getPosts, getPress, HEALTH_ORDER, TRACK_LABEL } from "@/lib/cms";
 import { Btn, Card, Eyebrow, Faq, Grid, H2, Section, Table, TrackCards, Visit } from "./ui";
 
 const SCHED: Record<string, string[][]> = {
@@ -153,11 +153,11 @@ export async function Health() {
     <>
       <section className="hero" style={{ background: "var(--tint)" }}><div className="wrap">
         <div className="txt"><Eyebrow>건강정보</Eyebrow><h1 className="h1" style={{ fontSize: 40 }}>환자가 자주 묻는 질문에 의료진이 답합니다</h1>
-          <p className="lead">수면·어지럼증·성장·귀코목 네 분야의 질문형 콘텐츠와 병원 공지를 한곳에 모았습니다. 모든 의학 내용은 의료진 검토 후 공개합니다.</p>
-          <div className="tabs">{Object.entries(TRACK_LABEL).filter(([k]) => k !== "column").map(([k, v]) => <a className="tab" key={k} href={`#${k}`}>{v}</a>)}</div></div>
+          <p className="lead">수면·어지럼증·성장·코·귀·목 여섯 분야의 질문형 콘텐츠와 병원 공지를 한곳에 모았습니다. 모든 의학 내용은 의료진 검토 후 공개합니다.</p>
+          <div className="tabs">{HEALTH_ORDER.map((k) => <a className="tab" key={k} href={`#${k}`}>{TRACK_LABEL[k]}</a>)}<a className="tab" href="#notice">병원 공지</a></div></div>
         <div className="pic"><img src="/img/hero_health.jpg" alt="의료진이 건강정보를 검토하는 장면" width={1536} height={1024} fetchPriority="high" /></div>
       </div></section>
-      {(["sleep", "dizziness", "growth", "ent"] as const).map((k, i) => {
+      {HEALTH_ORDER.map((k, i) => {
         const list = posts.filter((p) => p.track === k); if (!list.length) return null;
         return <Section key={k} id={k} alt={i % 2 === 1}><H2>{TRACK_LABEL[k]} 건강정보</H2>
           <Grid cols={4}>{list.map((p) => <Link className="q" key={p.slug} href={`/health/${p.slug}/`}><span className="tag">{TRACK_LABEL[p.track]}</span><h3>Q. {p.title}</h3><small>의학 정보 검토 {p.reviewer} · {p.published_at}</small></Link>)}</Grid></Section>;
