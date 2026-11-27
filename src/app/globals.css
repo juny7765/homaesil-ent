@@ -161,15 +161,15 @@ a.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); color: in
 .doc .lnk { font-size: 13px; color: var(--accent); font-weight: 600; margin-top: 6px; display: inline-block; }
 
 /* visit block */
-.visit2 { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(320px, 1fr); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: #fff; }
-.visit2 .hrs { padding: 32px 36px; display: flex; flex-direction: column; }
+.visit2 { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(320px, 1fr); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: #fff; }
+.visit2 .hrs { padding: 32px 32px; display: flex; flex-direction: column; }
 .visit2 .hd { display: flex; gap: 14px; align-items: center; margin-bottom: 18px; }
 .visit2 .hd .ico { width: 44px; height: 44px; border-radius: 12px; background: var(--soft); color: var(--brand); display: inline-flex; align-items: center; justify-content: center; flex: none; }
 .visit2 .hd .ico svg { width: 24px; height: 24px; }
 .visit2 .hd b { display: block; font-size: 18px; } .visit2 .hd span { font-size: 13px; color: var(--mute); }
-.visit2 ul li { display: grid; grid-template-columns: 170px 130px 1fr; gap: 12px; align-items: baseline; padding: 13px 0; border-top: 1px solid var(--line); font-size: 15px; }
+.visit2 ul li { display: grid; grid-template-columns: 150px 120px 1fr; gap: 12px; align-items: baseline; padding: 13px 0; border-top: 1px solid var(--line); font-size: 15px; }
 .visit2 li .d { color: var(--ink2); font-weight: 600; } .visit2 li .t { font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.01em; } .visit2 li .n { font-size: 13px; color: var(--mute); }
-.visit2 .addr { display: grid; grid-template-columns: 170px 1fr; gap: 12px; align-items: baseline; padding: 13px 0; border-top: 1px solid var(--line); font-size: 14.5px; }
+.visit2 .addr { display: grid; grid-template-columns: 150px 1fr; gap: 12px; align-items: baseline; padding: 13px 0; border-top: 1px solid var(--line); font-size: 14.5px; }
 .visit2 .addr .d { color: var(--ink2); font-weight: 600; }
 .visit2 .call { margin-top: auto; padding-top: 22px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 .visit2 .call .eb { display: block; font-size: 12px; letter-spacing: .18em; color: var(--mute); font-weight: 600; margin-bottom: 4px; }
