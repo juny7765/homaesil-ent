@@ -20,7 +20,7 @@ export function TrackMain({ k }: { k: TrackKey }) {
 
       {m.features && (
         <Section><H2>{t.short}클리닉의 6가지 약속</H2>
-          <Grid cols={3}>{m.features.map(([a, b]) => <div className="feat" key={a}><div><b>{a}</b><p>{b}</p></div></div>)}</Grid>
+          <Grid cols={3}>{m.features.map(([a, b, im]) => im ? <Card key={a} title={a} body={b} img={im} /> : <div className="feat" key={a}><div><b>{a}</b><p>{b}</p></div></div>)}</Grid>
         </Section>
       )}
       <Section alt><H2>{m.chips_t}</H2>
