@@ -209,7 +209,7 @@ export async function Column() {
         <div className="pic"><img src="/img/hero_health.jpg" alt="의료진이 건강 칼럼을 검토하는 장면" width={1536} height={1024} fetchPriority="high" /></div>
       </div></section>
       <Section>{cols.length
-        ? <Grid cols={3}>{cols.map((p) => <Link className="q" key={p.slug} href={`/health/${p.slug}/`}><span className="tag">칼럼</span><h3>{p.title}</h3><small>의료진 검토 {p.reviewer} · {p.published_at}</small></Link>)}</Grid>
+        ? <Grid cols={3}>{cols.map((p) => <Link className="q" key={p.slug} href={`/health/${p.slug}/`}><span className="tag">칼럼</span><h3>{p.title}</h3></Link>)}</Grid>
         : <p className="lead">칼럼을 준비 중입니다. 곧 의료진이 작성한 건강 칼럼을 만나보실 수 있습니다.</p>}
       </Section>
       <Section alt><H2>관련 진료로 이동</H2><TrackCards /></Section>
@@ -230,7 +230,7 @@ export async function Health() {
       {HEALTH_ORDER.map((k, i) => {
         const list = posts.filter((p) => p.track === k); if (!list.length) return null;
         return <Section key={k} id={k} alt={i % 2 === 1}><H2>{TRACK_LABEL[k]} 건강정보</H2>
-          <Grid cols={4}>{list.map((p) => <Link className="q" key={p.slug} href={`/health/${p.slug}/`}><span className="tag">{TRACK_LABEL[p.track]}</span><h3>Q. {p.title}</h3><small>의학 정보 검토 {p.reviewer} · {p.published_at}</small></Link>)}</Grid></Section>;
+          <Grid cols={4}>{list.map((p) => <Link className="q" key={p.slug} href={`/health/${p.slug}/`}><span className="tag">{TRACK_LABEL[p.track]}</span><h3>Q. {p.title}</h3></Link>)}</Grid></Section>;
       })}
       <Section id="notice"><H2>병원 공지</H2><Table head={["날짜", "구분", "제목"]} rows={notices.map((n) => [n.published_at, n.category, n.title])} /></Section>
       <Section alt><H2>관련 진료로 이동</H2><TrackCards /></Section>
